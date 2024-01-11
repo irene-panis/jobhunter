@@ -18,7 +18,7 @@ const userSchema = new Schema(
     },
     applied_jobs: [
       {
-        tpye: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Job',
       },
     ],

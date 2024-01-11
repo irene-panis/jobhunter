@@ -24,6 +24,12 @@ const jobSchema = new Schema(
     status: {
       type: String,
       default: 'open'
+    },
+    interview_date: {
+      type: Date,
+    },
+    interview_location: {
+      type: String
     }
   }
 );
