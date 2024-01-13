@@ -37,6 +37,11 @@ const jobController = {
     }
   },
   updateJob: async (req, res) => {
+    /* wanna deal with user emptying a field but idk
+    const emptyCheck = (field) => {
+      return (!field) ? undefined : field;
+    }
+    */
     try {
       const jobId = req.params.id;
       const {
@@ -68,6 +73,7 @@ const jobController = {
       }
       res.json(updatedJob);
     } catch (err) {
+      console.log(err);
       res.status(500).send(err);
     }
   },
