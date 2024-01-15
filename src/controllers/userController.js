@@ -31,6 +31,15 @@ const userController = {
       res.status(500).json({ message: "Internal server error" });
     }
   },
+  /* learn to implement jwt
+  login: async (req, res) => {
+    try {
+
+    } catch (err) {
+
+    }
+  }
+  */
 };
 
 module.exports = userController;
