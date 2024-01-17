@@ -1,19 +1,23 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const signToken = require('../utils/auth');
 
 const userController = {
   register: async (req, res) => {
     try {
       const { first_name, email, password } = req.body;
-      const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = await User.create({
         first_name,
         email,
-        password: hashedPassword,
+        password
       });
+      const token = signToken(newUser);
       res
         .status(201)
-        .json({ message: "Registration successful", user: newUser });
+        .json({ 
+          message: "Registration successful",
+          user: newUser,
+          token: token,
+         });
     } catch (err) {
       // Handle unique constraint violation error
       if (err.code === 11000) {
@@ -26,15 +30,34 @@ const userController = {
       res.status(500).json({ message: "Internal server error" });
     }
   },
-  /* learn to implement jwt
   login: async (req, res) => {
     try {
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
 
+      if (!user) {
+        return res.status(404).json({ message: "Invalid credentials" });
+      }
+
+      const passwordMatch = await user.isCorrectPassword(password);
+
+      if (!passwordMatch) {
+        return res.status(404).json({ message: "Invalid credentials" });
+      }
+
+      const token = signToken(user);
+      res
+        .status(201)
+        .json({ 
+          message: "Login successful",
+          user: user,
+          token: token,
+         });
     } catch (err) {
-
+      res.status(500).json({ message: "Internal server error" });
     }
   }
-  */
+  
 };
 
 module.exports = userController;
