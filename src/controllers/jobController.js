@@ -1,4 +1,4 @@
-const Job = require('../models/Job');
+const Job = require("../models/Job");
 
 const jobController = {
   getAllJobs: async (req, res) => {
@@ -79,14 +79,14 @@ const jobController = {
       const deletedJob = await Job.findByIdAndDelete(jobId);
 
       if (!deletedJob) {
-        return res.status(404).json({ message: 'Job not found' });
+        return res.status(404).json({ message: "Job not found" });
       }
 
-      res.json({ message: 'Job deleted successfully' });
+      res.json({ message: "Job deleted successfully" });
     } catch (err) {
       res.status(500).send(err);
     }
-  }
+  },
 };
 
 module.exports = jobController;

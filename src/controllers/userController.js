@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const signToken = require('../utils/auth');
+const User = require("../models/User");
+const signToken = require("../utils/auth");
 
 const userController = {
   register: async (req, res) => {
@@ -8,16 +8,14 @@ const userController = {
       const newUser = await User.create({
         first_name,
         email,
-        password
+        password,
       });
       const token = signToken(newUser);
-      res
-        .status(201)
-        .json({ 
-          message: "Registration successful",
-          user: newUser,
-          token: token,
-         });
+      res.status(201).json({
+        message: "Registration successful",
+        user: newUser,
+        token: token,
+      });
     } catch (err) {
       // Handle unique constraint violation error
       if (err.code === 11000) {
@@ -27,7 +25,6 @@ const userController = {
             .json({ message: "Email is already registered" });
         }
       }
-      console.error(err);
       res.status(500).json({ message: "Internal server error" });
     }
   },
@@ -47,18 +44,15 @@ const userController = {
       }
 
       const token = signToken(user);
-      res
-        .status(201)
-        .json({ 
-          message: "Login successful",
-          user: user,
-          token: token,
-         });
+      res.status(201).json({
+        message: "Login successful",
+        user: user,
+        token: token,
+      });
     } catch (err) {
       res.status(500).json({ message: "Internal server error" });
     }
-  }
-  
+  },
 };
 
 module.exports = userController;
