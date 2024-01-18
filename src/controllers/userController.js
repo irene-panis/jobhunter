@@ -27,6 +27,7 @@ const userController = {
             .json({ message: "Email is already registered" });
         }
       }
+      console.error(err);
       res.status(500).json({ message: "Internal server error" });
     }
   },

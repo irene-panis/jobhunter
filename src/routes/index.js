@@ -5,7 +5,8 @@ const userController = require('../controllers/userController');
 const jobController = require('../controllers/jobController');
 
 // user routes go here
-router.post('/users', userController.register);
+router.post('/register', userController.register);
+router.post('/login', userController.login);
 
 // job routes go here
 router.get('/jobs', jobController.getAllJobs);
