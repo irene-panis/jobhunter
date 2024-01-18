@@ -1,5 +1,6 @@
 const User = require("../models/User");
-const signToken = require("../utils/auth");
+const { signToken } = require("../utils/auth");
+const jwt = require('jsonwebtoken');
 
 const userController = {
   register: async (req, res) => {
@@ -10,11 +11,13 @@ const userController = {
         email,
         password,
       });
-      const token = signToken(newUser);
+      const accessToken = signToken(newUser);
+      const refreshToken = jwt.sign(newUser.toJSON(), process.env.JWT_REFRESH_SECRET);
       res.status(201).json({
         message: "Registration successful",
         user: newUser,
-        token: token,
+        accessToken: accessToken,
+        refreshToken: refreshToken
       });
     } catch (err) {
       // Handle unique constraint violation error
@@ -25,6 +28,7 @@ const userController = {
             .json({ message: "Email is already registered" });
         }
       }
+      console.error(err);
       res.status(500).json({ message: "Internal server error" });
     }
   },

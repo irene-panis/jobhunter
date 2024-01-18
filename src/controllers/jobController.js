@@ -1,9 +1,12 @@
 const Job = require("../models/Job");
+const User = require('../models/User');
 
 const jobController = {
-  getAllJobs: async (req, res) => {
+  getUserJobs: async (req, res) => {
     try {
-      const jobs = await Job.find();
+      const jobs = await User
+        .findOne({ email: req.user.email })
+        .populate('applied_jobs');
       res.json(jobs);
     } catch (err) {
       res.status(500).send(err);
