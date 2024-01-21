@@ -1,7 +1,7 @@
 export const Register = (props) => {
   return (
     <div className="formContainer flex flex-col gap-5 w-1/2 justify-center items-center">
-      <h2 className="text-3xl w-1/2">Register</h2>
+      <h2 className="text-3xl w-1/2 font-bold">Register</h2>
       <form id="registrationForm" className="flex flex-col gap-5 w-1/2 justify-center">
         <div className="inputContainer flex gap-10">
           <div className="nameContainer flex flex-col gap-1">
@@ -60,7 +60,7 @@ export const Register = (props) => {
         <div className="buttonContainer flex">
           <button
             type="button"
-            className="bg-[#415A77] hover:bg-[#778DA9] ease-in-out duration-300 py-2 px-3 rounded-md"
+            className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 py-2 px-3 rounded-md"
           >
             Register
           </button>

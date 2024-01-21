@@ -8,10 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-blue': '#0D1B2A',
-        'off-white': '#E0E1DD'
+        'dark-mode': '#2f2b3a',
+        'off-white': '#E0E1DD',
+        'dm-purple': '#5e43f3',
+        'dm-purple-hov': '#9171f8'
       }
     },
+    fontFamily: {
+      'montserrat': ['Montserrat', 'ui-sans-serif']
+    }
   },
   plugins: [],
 }

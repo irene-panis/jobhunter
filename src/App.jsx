@@ -4,7 +4,7 @@ import Landing from './views/pages/Landing';
 function App() {
   return (
     <>
-      <main className="flex min-h-screen bg-dark-blue text-off-white">
+      <main className="flex min-h-screen bg-dark-mode text-off-white font-montserrat">
         <Landing/>
       </main>
     </>
