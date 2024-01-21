@@ -1,8 +1,8 @@
 export const Register = (props) => {
   return (
-    <div className="formContainer flex flex-col gap-5">
-      <h2 className="text-3xl">Register</h2>
-      <form id="registrationForm" className="flex flex-col gap-5">
+    <div className="formContainer flex flex-col gap-5 w-1/2 justify-center items-center">
+      <h2 className="text-3xl w-1/2">Register</h2>
+      <form id="registrationForm" className="flex flex-col gap-5 w-1/2 justify-center">
         <div className="inputContainer flex gap-10">
           <div className="nameContainer flex flex-col gap-1">
             <label className="text-xs uppercase" htmlFor="firstName">
