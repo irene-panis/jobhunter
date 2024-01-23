@@ -15,8 +15,25 @@ export const Register = (props) => {
     setUserData(data);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const postURL = 'http://localhost:3001/register';
+      fetch(postURL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+      })
+      .then(() => {
+        console.log("User creation successful");
+      });
+    } catch (err) {
+      console.log("User creation unsuccessful");
+      console.log(err);
+    }
   } 
 
   return (
@@ -82,7 +99,7 @@ export const Register = (props) => {
 
         <div className="buttonContainer flex">
           <button
-            type="button"
+            type="submit"
             className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 py-2 px-3 rounded-md"
           >
             Register
