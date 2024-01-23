@@ -1,8 +1,28 @@
+import { useState } from "react";
+
 export const Register = (props) => {
+  const [userData, setUserData] = useState(
+    {
+      first_name: '',
+      email: '',
+      password: ''
+    }
+  );
+
+  const handleChange = (event) => {
+    const data = {...userData};
+    data[event.target.name] = event.target.value;
+    setUserData(data);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  } 
+
   return (
     <div className="formContainer flex flex-col gap-5 w-1/2 justify-center items-center">
       <h2 className="text-3xl w-1/2 font-bold">Register</h2>
-      <form id="registrationForm" className="flex flex-col gap-5 w-1/2 justify-center">
+      <form id="registrationForm" className="flex flex-col gap-5 w-1/2 justify-center" onSubmit={handleSubmit}>
         <div className="inputContainer flex gap-10">
           <div className="nameContainer flex flex-col gap-1">
             <label className="text-xs uppercase" htmlFor="firstName">
@@ -11,8 +31,9 @@ export const Register = (props) => {
             <input
               className="rounded-md text-black pl-2"
               type="text"
-              id="firstName"
-              name="firstName"
+              name="first_name"
+              value={userData.name}
+              onChange={handleChange}
               required
             />
           </div>
@@ -23,8 +44,9 @@ export const Register = (props) => {
             <input
               className="rounded-md text-black pl-2"
               type="email"
-              id="email"
               name="email"
+              value={userData.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -38,8 +60,9 @@ export const Register = (props) => {
             <input
               className="rounded-md text-black pl-2"
               type="password"
-              id="password"
               name="password"
+              value={userData.password}
+              onChange={handleChange}
               required
             />
           </div>

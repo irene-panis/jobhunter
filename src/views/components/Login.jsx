@@ -1,9 +1,27 @@
+import { useState } from "react";
 
 export const Login = (props) => {
+  const [userData, setUserData] = useState(
+    {
+      email: '',
+      password: ''
+    }
+  );
+
+  const handleChange = (event) => {
+    const data = {...userData};
+    data[event.target.name] = event.target.value;
+    setUserData(data);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  } 
+
   return (
     <div className="formContainer flex flex-col gap-5 w-1/2 justify-center items-center">
       <h2 className="text-3xl w-1/2 font-bold">Login</h2>
-      <form id="registrationForm" className="flex flex-col gap-5 w-1/2 justify-center">
+      <form id="loginForm" className="flex flex-col gap-5 w-1/2 justify-center" onSubmit={handleSubmit}>
         <div className="inputContainer flex gap-10">
           <div className="emailContainer flex flex-col gap-1">
             <label className="text-xs uppercase" htmlFor="email">
@@ -12,8 +30,9 @@ export const Login = (props) => {
             <input
               className="rounded-md text-black pl-2"
               type="email"
-              id="email"
               name="email"
+              value={userData.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -27,8 +46,9 @@ export const Login = (props) => {
             <input
               className="rounded-md text-black pl-2"
               type="password"
-              id="password"
               name="password"
+              value={userData.password}
+              onChange={handleChange}
               required
             />
           </div>
