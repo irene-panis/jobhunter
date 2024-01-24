@@ -19,7 +19,7 @@ export const Register = (props) => {
     event.preventDefault();
     try {
       const postURL = 'http://localhost:3001/register';
-      fetch(postURL, {
+      const response = await fetch(postURL, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -27,9 +27,10 @@ export const Register = (props) => {
         },
         body: JSON.stringify(userData)
       })
-      .then(() => {
-        console.log("User creation successful");
-      });
+      if (!response.ok) {
+        throw new Error(`Error - Status: ${response.status}`);
+      }
+      console.log("User creation succesful");
     } catch (err) {
       console.log("User creation unsuccessful");
       console.log(err);

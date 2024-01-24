@@ -35,16 +35,16 @@ const userController = {
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email: email });
 
       if (!user) {
-        return res.status(404).json({ message: "Invalid credentials" });
+        return res.status(400).json({ message: "Invalid credentials" });
       }
 
       const passwordMatch = await user.isCorrectPassword(password);
 
       if (!passwordMatch) {
-        return res.status(404).json({ message: "Invalid credentials" });
+        return res.status(400).json({ message: "Invalid credentials" });
       }
 
       const token = signToken(user);

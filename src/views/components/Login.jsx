@@ -14,8 +14,26 @@ export const Login = (props) => {
     setUserData(data);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const postURL = 'http://localhost:3001/login';
+      const response = await fetch(postURL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+      });
+      if (!response.ok) {
+        throw new Error(`Error - Status: ${response.status}`);
+      }
+      console.log("User login successful");
+    } catch (err) {
+      console.log("User login unsuccessful");
+      console.log(err);
+    }
   } 
 
   return (
@@ -56,14 +74,14 @@ export const Login = (props) => {
 
         <div className="buttonContainer flex">
           <button
-            type="button"
+            type="submit"
             className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 py-2 px-3 rounded-md"
           >
             Login
           </button>
         </div>
         <div className="switchFormContainer flex">
-          <span>Don't have an account? <button onClick={() => props.onFormSwitch("register")} className="underline decoration-solid hover:bg-off-white hover:text-black ease-in-out duration-300">Register</button></span>
+          <span>Don't have an account? <button type="button" onClick={() => props.onFormSwitch("register")} className="underline decoration-solid hover:bg-off-white hover:text-black ease-in-out duration-300">Register</button></span>
         </div>
       </form>
     </div>
