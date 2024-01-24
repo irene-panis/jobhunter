@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Register = (props) => {
   const [userData, setUserData] = useState(
     {
       first_name: '',
       email: '',
-      password: ''
+      password: '',
+      confirm_pass: ''
     }
   );
+
+  const [passMatch, setPassMatch] = useState(true);
+
+  useEffect(() => {
+    setPassMatch(userData.password === userData.confirm_pass);
+  }, [userData.password, userData.confirm_pass]);
 
   const handleChange = (event) => {
     const data = {...userData};
@@ -25,7 +32,13 @@ export const Register = (props) => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(
+          {
+            first_name: userData.first_name,
+            email: userData.email,
+            password: userData.password
+          }
+        ),
       })
       if (!response.ok) {
         throw new Error(`Error - Status: ${response.status}`);
@@ -91,17 +104,20 @@ export const Register = (props) => {
             <input
               className="rounded-md text-black pl-2"
               type="password"
-              id="confirmPassword"
-              name="confirmPassword"
+              id="confirm_pass"
+              name="confirm_pass"
+              onChange={handleChange}
               required
             />
           </div>
         </div>
+        {!passMatch && <span className="text-red-500 text-sm -mt-4">Passwords do not match</span>}
 
         <div className="buttonContainer flex">
           <button
             type="submit"
-            className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 py-2 px-3 rounded-md"
+            className={`bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 py-2 px-3 rounded-md ${!passMatch && 'cursor-not-allowed opacity-50 hover:bg-dm-purple'}`}
+            disabled={!passMatch}
           >
             Register
           </button>
