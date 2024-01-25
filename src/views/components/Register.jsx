@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 
 export const Register = (props) => {
+
+  // STATES //
+  // keep track of form data
   const [userData, setUserData] = useState(
     {
       first_name: '',
@@ -9,14 +12,19 @@ export const Register = (props) => {
       confirm_pass: ''
     }
   );
+  // continously check if pass and confirmpass are matching
   const [passMatch, setPassMatch] = useState(true);
+  // for when inputs are invalid/empty, helps w/ styling and form disable
   const [isFormDisabled, setIsFormDisabled] = useState(true);
+  // display error when dupe email is found in database
   const [isEmailFound, setIsEmailFound] = useState(false);
 
+  // check for matching passwords
   useEffect(() => {
     setPassMatch(userData.password === userData.confirm_pass);
   }, [userData.password, userData.confirm_pass]);
 
+  // check for invalid/empty inputs
   useEffect(() => {
     setIsFormDisabled(
       !passMatch || 
@@ -30,6 +38,7 @@ export const Register = (props) => {
     const data = {...userData};
     data[event.target.name] = event.target.value;
     setUserData(data);
+    // clear dupe email error when user modifies email input
     if (event.target.name === 'email') {
       setIsEmailFound(false);
     }
@@ -54,6 +63,7 @@ export const Register = (props) => {
         ),
       })
 
+      // error handling
       if (!response.ok) {
         const errorData = await response.json();
         if (errorData.error === "duplicate_email") {
