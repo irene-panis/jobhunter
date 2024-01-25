@@ -9,17 +9,30 @@ export const Register = (props) => {
       confirm_pass: ''
     }
   );
-
   const [passMatch, setPassMatch] = useState(true);
+  const [isFormDisabled, setIsFormDisabled] = useState(true);
+  const [isEmailFound, setIsEmailFound] = useState(false);
 
   useEffect(() => {
     setPassMatch(userData.password === userData.confirm_pass);
   }, [userData.password, userData.confirm_pass]);
 
+  useEffect(() => {
+    setIsFormDisabled(
+      !passMatch || 
+      !userData.first_name ||
+      !userData.email ||
+      !userData.password
+    );
+  }, [userData, passMatch]);
+
   const handleChange = (event) => {
     const data = {...userData};
     data[event.target.name] = event.target.value;
     setUserData(data);
+    if (event.target.name === 'email') {
+      setIsEmailFound(false);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -40,9 +53,18 @@ export const Register = (props) => {
           }
         ),
       })
+
       if (!response.ok) {
+        const errorData = await response.json();
+        if (errorData.error === "duplicate_email") {
+          console.log("dupe email found");
+          setIsEmailFound(true);
+        } else {
+          setIsEmailFound(false);
+        }
         throw new Error(`Error - Status: ${response.status}`);
       }
+
       console.log("User creation succesful");
     } catch (err) {
       console.log("User creation unsuccessful");
@@ -80,6 +102,7 @@ export const Register = (props) => {
               onChange={handleChange}
               required
             />
+            {isEmailFound && <span className="text-red-500 text-sm">Email already registered.</span>}
           </div>
         </div>
 
@@ -116,8 +139,8 @@ export const Register = (props) => {
         <div className="buttonContainer flex">
           <button
             type="submit"
-            className={`bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 py-2 px-3 rounded-md ${!passMatch && 'cursor-not-allowed opacity-50 hover:bg-dm-purple'}`}
-            disabled={!passMatch}
+            className={`bg-dm-purple ${isFormDisabled ? '' : 'hover:bg-dm-purple-hov'} ease-in-out duration-300 py-2 px-3 rounded-md ${isFormDisabled && 'cursor-not-allowed opacity-50 hover:bg-dm-purple'}`}
+            disabled={isFormDisabled}
           >
             Register
           </button>

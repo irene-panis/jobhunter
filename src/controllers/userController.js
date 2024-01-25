@@ -25,7 +25,10 @@ const userController = {
         if (err.keyPattern && err.keyPattern.email) {
           return res
             .status(400)
-            .json({ message: "Email is already registered" });
+            .json({ 
+              error: 'duplicate_email',
+              message: "Email is already registered" 
+            });
         }
       }
       console.error(err);
