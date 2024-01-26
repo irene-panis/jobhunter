@@ -50,11 +50,11 @@ const userController = {
         return res.status(400).json({ message: "Invalid credentials" });
       }
 
-      const token = signToken(user);
+      const accessToken = signToken(user);
       res.status(201).json({
         message: "Login successful",
         user: user,
-        token: token,
+        accessToken: accessToken,
       });
     } catch (err) {
       res.status(500).json({ message: "Internal server error" });

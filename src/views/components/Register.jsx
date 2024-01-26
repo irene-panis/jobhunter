@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import AuthService from '../../utils/decode';
 
 export const Register = (props) => {
 
@@ -63,10 +64,10 @@ export const Register = (props) => {
         ),
       })
 
+      const data = await response.json();
       // error handling
       if (!response.ok) {
-        const errorData = await response.json();
-        if (errorData.error === "duplicate_email") {
+        if (data.error === "duplicate_email") {
           console.log("dupe email found");
           setIsEmailFound(true);
         } else {
@@ -75,7 +76,8 @@ export const Register = (props) => {
         throw new Error(`Error - Status: ${response.status}`);
       }
 
-      console.log("User creation succesful");
+      AuthService.login(data.accessToken);
+      console.log("User creation successful");
     } catch (err) {
       console.log("User creation unsuccessful");
       console.log(err);
