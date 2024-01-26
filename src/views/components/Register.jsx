@@ -21,6 +21,8 @@ export const Register = (props) => {
   const [isEmailFound, setIsEmailFound] = useState(false);
   // display error when submitted pw is not long enough (<8 chars)
   const [isLongPass, setIsLongPass] = useState(true);
+  // check if email input is valid email
+  const [isValidEmail, setIsValidEmail] = useState(true);
 
   // check for matching passwords
   useEffect(() => {
@@ -33,9 +35,25 @@ export const Register = (props) => {
       !passMatch || 
       !userData.first_name ||
       !userData.email ||
-      !userData.password
+      !userData.password ||
+      !isValidEmail
     );
-  }, [userData, passMatch]);
+  }, [userData, passMatch, isValidEmail]);
+
+  useEffect(() => {
+    if (userData.email === '') {
+      setIsValidEmail(true);
+    } else {
+      setIsValidEmail(validateEmail(userData.email));
+    }
+  }, [userData.email]);
+
+  const validateEmail = (inputEmail) => {
+    // Implement your email validation logic
+    // You can use a regular expression or any other method
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(inputEmail);
+  };
 
   const handleChange = (event) => {
     const data = {...userData};
@@ -44,6 +62,7 @@ export const Register = (props) => {
     // clear dupe email error when user modifies email input
     if (event.target.name === 'email') {
       setIsEmailFound(false);
+      validateEmail(userData.email)
     }
     if (event.target.name === 'password') {
       setIsLongPass(true);
@@ -126,6 +145,7 @@ export const Register = (props) => {
               required
             />
             {isEmailFound && <span className="text-red-500 text-sm">Email already registered.</span>}
+            {!isValidEmail && <span className="text-red-500 text-sm">Email is not valid.</span>}
           </div>
         </div>
 
