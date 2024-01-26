@@ -15,6 +15,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
+      minLength: [8, 'Password must be at least 8 characters.']
     },
     applied_jobs: [
       {

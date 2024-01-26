@@ -19,6 +19,8 @@ export const Register = (props) => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
   // display error when dupe email is found in database
   const [isEmailFound, setIsEmailFound] = useState(false);
+  // display error when submitted pw is not long enough (<8 chars)
+  const [isLongPass, setIsLongPass] = useState(true);
 
   // check for matching passwords
   useEffect(() => {
@@ -42,6 +44,9 @@ export const Register = (props) => {
     // clear dupe email error when user modifies email input
     if (event.target.name === 'email') {
       setIsEmailFound(false);
+    }
+    if (event.target.name === 'password') {
+      setIsLongPass(true);
     }
   };
 
@@ -72,6 +77,12 @@ export const Register = (props) => {
           setIsEmailFound(true);
         } else {
           setIsEmailFound(false);
+        }
+        if (data.error === 'validation_error') {
+          console.log("password must be at least 8 characters");
+          setIsLongPass(false);
+        } else {
+          setIsLongPass(true);
         }
         throw new Error(`Error - Status: ${response.status}`);
       }
@@ -147,6 +158,7 @@ export const Register = (props) => {
           </div>
         </div>
         {!passMatch && <span className="text-red-500 text-sm -mt-4">Passwords do not match</span>}
+        {!isLongPass && <span className="text-red-500 text-sm -mt-4">Password must be at least 8 characters.</span>}
 
         <div className="buttonContainer flex">
           <button
