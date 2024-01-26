@@ -4,25 +4,29 @@ import { Link } from 'react-router-dom';
 export const Navbar = () => {
   return (
     <div className="navContainer flex flex-col w-1/5 bg-[#1a1625] py-10 px-20 gap-20 text-2xl lowercase">
-      <h1 className="font-bold">JobTracker</h1>
+      <h1 className="font-bold">
+        <Link to="/">
+          JobTracker
+        </Link>
+      </h1>
       <ul className="flex flex-col gap-10">
         <li>
-          <Link to="/">
+          <Link to="/" className="hover:bg-[#2f2b3a] ease-in-out duration-300">
             Overview
           </Link>
         </li>
         <li>
-          <Link to="/Applications">
+          <Link to="/Applications" className="hover:bg-[#2f2b3a] ease-in-out duration-300">
             Applications
           </Link>
         </li>
         <li>
-          <Link to="/Interviews">
+          <Link to="/Interviews" className="hover:bg-[#2f2b3a] ease-in-out duration-300">
            Interviews
           </Link>
         </li>
         <li>
-          <Link to="/Settings">
+          <Link to="/Settings" className="hover:bg-[#2f2b3a] ease-in-out duration-300">
             Settings
           </Link>
         </li>
@@ -30,7 +34,7 @@ export const Navbar = () => {
       <button 
         type="button" 
         onClick={AuthService.logout}
-        className="lowercase text-left"
+        className="lowercase text-left hover:bg-[#2f2b3a] ease-in-out duration-300"
       >
         Logout
       </button>
