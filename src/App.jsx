@@ -9,14 +9,16 @@ function App() {
     <>
       {
         AuthService.loggedIn() ? (
-          <div>
+          <div className="flex flex min-h-screen bg-dark-mode text-off-white font-montserrat">
             <Navbar/>
-            <main className="flex min-h-screen bg-dark-mode text-off-white font-montserrat">
+            <main className="">
               <Outlet/>
             </main>     
           </div>
         ) : (
-          <Landing/>
+          <div className="flex flex min-h-screen bg-dark-mode text-off-white font-montserrat">
+            <Landing/>
+          </div>
         )
       }
     </>
