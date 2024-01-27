@@ -11,7 +11,7 @@ function App() {
         AuthService.loggedIn() ? (
           <div className="flex flex min-h-screen bg-dark-mode text-off-white font-montserrat">
             <Navbar/>
-            <main className="">
+            <main className="w-full">
               <Outlet/>
             </main>     
           </div>
