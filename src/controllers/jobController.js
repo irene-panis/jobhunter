@@ -1,5 +1,6 @@
-const Job = require("../models/Job");
-const User = require('../models/User');
+import Job from "../models/Job.js";
+import User from '../models/User.js';
+import AuthService from '../utils/decode.js';
 
 const jobController = {
   getUserJobs: async (req, res) => {
@@ -34,6 +35,8 @@ const jobController = {
         location,
         notes,
       });
+      const user = AuthService.getProfile();
+      console.log(user);
       res.status(200).json(job);
     } catch (err) {
       res.status(500).send(err);
@@ -92,4 +95,4 @@ const jobController = {
   },
 };
 
-module.exports = jobController;
+export default jobController;

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Register } from '../components/Register';
-import { Login } from '../components/Login';
+import { Register } from '../components/Register.jsx';
+import { Login } from '../components/Login.jsx';
 
 function Landing() {
 

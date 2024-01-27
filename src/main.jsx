@@ -4,12 +4,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './App.css'
 
-import App from './App';
-import { Overview } from './views/pages/Overview';
-import { Applications } from './views/pages/Applications';
-import { Interviews } from './views/pages/Interviews';
-import { Settings } from './views/pages/Settings';
-import Error from './views/pages/Error';
+import App from './App.jsx';
+import { Overview } from './views/pages/Overview.jsx';
+import { Applications } from './views/pages/Applications.jsx';
+import { Interviews } from './views/pages/Interviews.jsx';
+import { Settings } from './views/pages/Settings.jsx';
+import Error from './views/pages/Error.jsx';
 
 // Define the accessible routes, and which components respond to which URL
 const router = createBrowserRouter([

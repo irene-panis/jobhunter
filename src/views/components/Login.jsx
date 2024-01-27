@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthService from '../../utils/decode';
+import AuthService from '../../utils/decode.js';
 
 export const Login = (props) => {
   const [userData, setUserData] = useState(

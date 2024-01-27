@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { authenticateToken } = require('../utils/auth');
+import { authenticateToken } from '../utils/auth.js';
 
-const userController = require('../controllers/userController');
-const jobController = require('../controllers/jobController');
+import userController from '../controllers/userController.js';
+import jobController from '../controllers/jobController.js';
 
 // user routes go here
 router.post('/register', userController.register);
@@ -16,4 +16,4 @@ router.post('/jobs', jobController.addJob);
 router.put('/jobs/:id', jobController.updateJob);
 router.delete('/jobs/:id', jobController.deleteJob);
 
-module.exports = router;
+export default router;

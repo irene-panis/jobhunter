@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AuthService from '../../utils/decode';
+import AuthService from '../../utils/decode.js';
 
 export const Register = (props) => {
 

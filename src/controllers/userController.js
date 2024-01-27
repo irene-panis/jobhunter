@@ -1,6 +1,6 @@
-const User = require("../models/User");
-const { signToken } = require("../utils/auth");
-const jwt = require('jsonwebtoken');
+import User from "../models/User.js";
+import { signToken } from "../utils/auth.js";
+import jwt from 'jsonwebtoken';
 
 const userController = {
   register: async (req, res) => {
@@ -70,4 +70,4 @@ const userController = {
   },
 };
 
-module.exports = userController;
+export default userController;

@@ -2,7 +2,7 @@
   "name": "job-tracker",
   "private": true,
   "version": "0.0.0",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "start": "concurrently \"npm run dev\" \"node server.js\"",

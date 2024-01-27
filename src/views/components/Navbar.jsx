@@ -1,4 +1,4 @@
-import AuthService from '../../utils/decode';
+import AuthService from '../../utils/decode.js';
 import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
