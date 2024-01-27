@@ -1,6 +1,5 @@
 import Job from "../models/Job.js";
 import User from '../models/User.js';
-import AuthService from '../utils/decode.js';
 
 const jobController = {
   getUserJobs: async (req, res) => {
@@ -28,6 +27,7 @@ const jobController = {
   },
   addJob: async (req, res) => {
     try {
+      console.log(req.user);
       const { position, company, location, notes } = req.body;
       const job = await Job.create({
         position,
@@ -35,11 +35,10 @@ const jobController = {
         location,
         notes,
       });
-      const user = AuthService.getProfile();
-      console.log(user);
       res.status(200).json(job);
     } catch (err) {
-      res.status(500).send(err);
+      console.error(err);
+      res.status(500).json(err);
     }
   },
   updateJob: async (req, res) => {

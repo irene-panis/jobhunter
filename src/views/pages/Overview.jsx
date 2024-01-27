@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AuthService from '../../utils/decode.js';
 
 export const Overview = () => {
   const [jobData, setJobData] = useState({
@@ -19,18 +20,24 @@ export const Overview = () => {
     event.preventDefault();
     try {
       const postURL = 'http://localhost:3001/jobs';
+      const userToken = AuthService.getToken();
       const response = await fetch(postURL, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          // we're trying to send token over, decode it in middleware
+          // then send user info over to addJob so we can push
+          // job to applied_jobs array.
+          // console.log(req.user) in addJob is currently
+          // printing out undefined
+          'Authorization': `Bearer ${userToken}`
         },
         body: JSON.stringify(jobData)
       });
 
       const data = await response.json();
       console.log(data);
-      console.log("Job creation successful");
     } catch (err) {
       console.log("Job creation unsuccessful");
       console.log(err);
