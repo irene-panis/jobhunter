@@ -21,16 +21,12 @@ export const Overview = () => {
     try {
       const postURL = 'http://localhost:3001/jobs';
       const userToken = AuthService.getToken();
+      console.log(userToken);
       const response = await fetch(postURL, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          // we're trying to send token over, decode it in middleware
-          // then send user info over to addJob so we can push
-          // job to applied_jobs array.
-          // console.log(req.user) in addJob is currently
-          // printing out undefined
           'Authorization': `Bearer ${userToken}`
         },
         body: JSON.stringify(jobData)

@@ -7,9 +7,9 @@ const jobController = {
       const jobs = await User
         .findOne({ email: req.user.email })
         .populate('applied_jobs');
-      res.json(jobs);
+      return res.json(jobs);
     } catch (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
   },
   getJobById: async (req, res) => {
@@ -20,14 +20,13 @@ const jobController = {
         return res.status(404).json({ message: "Job not found" });
       }
 
-      res.json(job);
+      return res.status(200).json(job);
     } catch (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
   },
   addJob: async (req, res) => {
     try {
-      console.log(req.user);
       const { position, company, location, notes } = req.body;
       const job = await Job.create({
         position,
@@ -35,10 +34,23 @@ const jobController = {
         location,
         notes,
       });
-      res.status(200).json(job);
+      const filter = { email: req.user.data.email };
+      const update = { $push: { applied_jobs: job._id } };
+      const user = await User.findOneAndUpdate(
+        filter,
+        update,
+        { new: true }
+      );
+      if (!user) {
+        // If no user found with the specified email
+        return res.status(404).json({ message: 'User not found' });
+      }
+      // Successfully updated user
+      console.log(user);
+      return res.status(200).json(job);
     } catch (err) {
       console.error(err);
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
   updateJob: async (req, res) => {
@@ -71,10 +83,10 @@ const jobController = {
       if (!updatedJob) {
         return res.status(404).json({ message: "Job not found" });
       }
-      res.json(updatedJob);
+      return res.json(updatedJob);
     } catch (err) {
       console.log(err);
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
   },
   deleteJob: async (req, res) => {
@@ -87,9 +99,9 @@ const jobController = {
         return res.status(404).json({ message: "Job not found" });
       }
 
-      res.json({ message: "Job deleted successfully" });
+      return res.json({ message: "Job deleted successfully" });
     } catch (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
   },
 };
