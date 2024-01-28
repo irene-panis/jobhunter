@@ -4,11 +4,14 @@ import User from '../models/User.js';
 const jobController = {
   getUserJobs: async (req, res) => {
     try {
-      const jobs = await User
-        .findOne({ email: req.user.email })
-        .populate('applied_jobs');
-      return res.json(jobs);
+      const user = await User
+        .findOne({ email: req.user.data.email })
+        .select('applied_jobs');
+      const jobIds = user.applied_jobs;
+      const jobs = await Job.find({ _id: { $in: jobIds } });
+      return res.status(200).json(jobs);
     } catch (err) {
+      console.log(err.message);
       return res.status(500).send(err);
     }
   },
