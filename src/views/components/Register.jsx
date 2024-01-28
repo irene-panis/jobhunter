@@ -92,13 +92,11 @@ export const Register = (props) => {
       // error handling
       if (!response.ok) {
         if (data.error === "duplicate_email") {
-          console.log("dupe email found");
           setIsEmailFound(true);
         } else {
           setIsEmailFound(false);
         }
         if (data.error === 'validation_error') {
-          console.log("password must be at least 8 characters");
           setIsLongPass(false);
         } else {
           setIsLongPass(true);
@@ -107,10 +105,9 @@ export const Register = (props) => {
       }
 
       AuthService.login(data.accessToken);
-      console.log("User creation successful");
     } catch (err) {
       console.log("User creation unsuccessful");
-      console.log(err);
+      console.error(err);
     }
   } 
 

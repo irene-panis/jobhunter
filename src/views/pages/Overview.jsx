@@ -13,7 +13,6 @@ export const Overview = () => {
     const data = {...jobData};
     data[event.target.name] = event.target.value;
     setJobData(data);
-    console.log(data);
   }
 
   const handleSubmit = async (event) => {
@@ -22,7 +21,7 @@ export const Overview = () => {
       const postURL = 'http://localhost:3001/jobs';
       const userToken = AuthService.getToken();
       console.log(userToken);
-      const response = await fetch(postURL, {
+      await fetch(postURL, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -31,12 +30,9 @@ export const Overview = () => {
         },
         body: JSON.stringify(jobData)
       });
-
-      const data = await response.json();
-      console.log(data);
     } catch (err) {
       console.log("Job creation unsuccessful");
-      console.log(err);
+      console.error(err);
     }
   }
 

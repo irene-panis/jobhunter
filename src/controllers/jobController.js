@@ -46,7 +46,6 @@ const jobController = {
         return res.status(404).json({ message: 'User not found' });
       }
       // Successfully updated user
-      console.log(user);
       return res.status(200).json(job);
     } catch (err) {
       console.error(err);
@@ -83,9 +82,9 @@ const jobController = {
       if (!updatedJob) {
         return res.status(404).json({ message: "Job not found" });
       }
-      return res.json(updatedJob);
+      return res.status(200).json(updatedJob);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(500).send(err);
     }
   },

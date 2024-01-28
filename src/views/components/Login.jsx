@@ -28,17 +28,15 @@ export const Login = (props) => {
         body: JSON.stringify(userData)
       });
       const data = await response.json();
-      console.log(data);
       // error handling
       if (!response.ok) {
         throw new Error(`Error - Status: ${response.status}`);
       }
 
       AuthService.login(data.accessToken);
-      console.log("User login successful");
     } catch (err) {
       console.log("User login unsuccessful");
-      console.log(err);
+      console.error(err);
     }
   } 
 
