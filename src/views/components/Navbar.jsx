@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
   return (
-    <div className="navContainer flex flex-col w-1/5 bg-[#1a1625] py-10 px-20 gap-20 text-2xl lowercase">
+    <div className="navContainer flex flex-col bg-[#1a1625] py-10 px-20 gap-20 text-2xl lowercase">
       <h1 className="font-bold">
         <Link to="/">
           JobTracker
