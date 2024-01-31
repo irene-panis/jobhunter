@@ -19,16 +19,12 @@ const jobController = {
     try {
       const user = await User
         .findOne({ email: req.user.data.email })
-        .select("applied_jobs")
-        .populate({
-          path: "applied_jobs",
-          options: { sort: { createdAt: -1 }, limit: 3 }
-        })
-        .exec();
-      console.log("test1");
-      console.log(user);
-      console.log("test2");
-      const jobs = user.applied_jobs;
+        .select('applied_jobs');
+      const jobIds = user.applied_jobs;
+      const jobs = await Job
+        .find({ _id: { $in: jobIds } })
+        .sort({ date_applied: -1 })
+        .limit(3);
       return res.status(200).json(jobs);
     } catch (err) {
       console.error(err.message);
