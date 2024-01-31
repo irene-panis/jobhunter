@@ -10,13 +10,13 @@ export const Overview = () => {
     const getJobs = async () => {
       try {
         const userToken = AuthService.getToken();
-        const getURL = "http://localhost:3001/jobs";
+        const getURL = "http://localhost:3001/jobs/recent";
         const response = await fetch(getURL, {
           method: "GET",
           headers: {
-            Accept: "application/json",
+            "Accept": "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
+            "Authorization": `Bearer ${userToken}`,
           },
         });
         const jobs = await response.json();
