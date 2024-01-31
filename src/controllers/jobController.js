@@ -15,6 +15,26 @@ const jobController = {
       return res.status(500).send(err);
     }
   },
+  getRecentJobs: async (req, res) => {
+    try {
+      const user = await User
+        .findOne({ email: req.user.data.email })
+        .select("applied_jobs")
+        .populate({
+          path: "applied_jobs",
+          options: { sort: { createdAt: -1 }, limit: 3 }
+        })
+        .exec();
+      console.log("test1");
+      console.log(user);
+      console.log("test2");
+      const jobs = user.applied_jobs;
+      return res.status(200).json(jobs);
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).json({ error: err.message });
+    }
+  },
   getJobById: async (req, res) => {
     try {
       const job = await Job.findOne({ _id: req.params.id });

@@ -10,7 +10,8 @@ router.post('/register', userController.register);
 router.post('/login', userController.login);
 
 // job routes go here
-router.get('/jobs', authenticateToken, jobController.getUserJobs);
+router.get('/jobs/all', authenticateToken, jobController.getUserJobs);
+router.get('/jobs/recent', authenticateToken, jobController.getRecentJobs);
 router.get('/jobs/:id', jobController.getJobById);
 router.post('/jobs', authenticateToken, jobController.addJob);
 router.put('/jobs/:id', jobController.updateJob);
