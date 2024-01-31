@@ -8,7 +8,9 @@ const jobController = {
         .findOne({ email: req.user.data.email })
         .select('applied_jobs');
       const jobIds = user.applied_jobs;
-      const jobs = await Job.find({ _id: { $in: jobIds } });
+      const jobs = await Job
+        .find({ _id: { $in: jobIds } })
+        .sort({ date_applied: -1 });
       return res.status(200).json(jobs);
     } catch (err) {
       console.log(err.message);
