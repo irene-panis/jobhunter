@@ -10,9 +10,9 @@ function App() {
     <>
       {
         AuthService.loggedIn() ? (
-          <div className="grid grid-cols-5 grid-rows-1 min-h-screen bg-dark-mode text-off-white font-montserrat">
+          <div className="flex w-full min-h-screen bg-dark-mode text-off-white font-montserrat">
             <Navbar/>
-            <div className="header-and-content w-full col-span-4 flex flex-col text-white">
+            <div className="header-and-content w-full flex flex-col text-white">
               <Header/>
               <main className="w-full pl-10">
                 <Outlet/>
