@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import AuthService from '../../utils/decode.js';
 
-export const EditApp = ({ onSubmit }) => {
+export const EditApp = ({ job, onSubmit, onViewClick }) => {
 
   const [jobData, setJobData] = useState({
-    position: '',
-    company: '',
-    location: '',
-    notes: '',
-    status: 'open',
-    interview_date: '',
-    interview_location: ''
+    position: job.position,
+    company: job.company,
+    location: job.location,
+    notes: job.notes,
+    status: job.status,
+    interview_date: job.interview_date,
+    interview_location: job.interview_location
   });
 
   const handleChange = (event) => {
@@ -22,10 +22,11 @@ export const EditApp = ({ onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const postURL = 'http://localhost:3001/jobs';
+      const jobId = job._id;
+      const postURL = `http://localhost:3001/jobs/${jobId}`;
       const userToken = AuthService.getToken();
       await fetch(postURL, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -42,7 +43,7 @@ export const EditApp = ({ onSubmit }) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-bold">Submit New Application</h2>
+      <h2 className="text-2xl font-bold">Edit Application</h2>
       <form
         className="flex flex-col gap-5 bg-white text-black rounded-md py-5 px-10 w-full"
         onSubmit={handleSubmit}
@@ -97,7 +98,14 @@ export const EditApp = ({ onSubmit }) => {
           type="submit"
           className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 rounded-md text-off-white py-1"
         >
-          Create Job
+          Update Application
+        </button>
+        <button
+          type="button"
+          className="bg-[#d1d1d1] hover:bg-[#adacac] ease-in-out duration-300 rounded-md text-black py-1"
+          onClick={onViewClick}
+        >
+          View Application
         </button>
       </form>
     </div>

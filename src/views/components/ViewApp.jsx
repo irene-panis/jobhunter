@@ -1,6 +1,6 @@
 import { formatDate } from "../../utils/formatDate";
 
-export const ViewApp = ({ job }) => {
+export const ViewApp = ({ job, onEditClick }) => {
   return (
     <div className="flex flex-col justify-between bg-white text-black rounded-md px-5 py-3">
       <div className="job-info flex flex-col">
@@ -27,6 +27,15 @@ export const ViewApp = ({ job }) => {
           </div>
         )
       }
+      <div className="edit-button flex justify-end">
+        <button 
+          type="button" 
+          className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 rounded-md text-off-white py-1 px-3"
+          onClick={onEditClick}
+        >
+          Edit
+        </button>
+      </div>
     </div>
   );
 }

@@ -2,12 +2,24 @@ import { formatDate } from "../../utils/formatDate";
 import { useState } from 'react';
 import { Modal } from "./Modal.jsx";
 import { ViewApp } from "./ViewApp.jsx";
+import { EditApp } from "./EditApp.jsx";
 
 export const JobContainer = ({ job }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleButtonClick = () => {
     setModalOpen(false);
+    setEditing(false);
+  }
+
+  const [editing, setEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setEditing(true);
+  }
+
+  const handleViewClick = () => {
+    setEditing(false);
   }
 
   return (
@@ -30,8 +42,19 @@ export const JobContainer = ({ job }) => {
         </div>
       </div>
       {modalOpen && (
-          <Modal onClose={handleButtonClick}>
-            <ViewApp job={job} />
+          <Modal 
+            onClose={handleButtonClick}
+            job={job}
+            key={job._id}
+          >
+            {editing ? 
+            <EditApp 
+              job={job} 
+              onViewClick={handleViewClick} 
+              onSubmit={handleButtonClick}
+            /> : 
+            <ViewApp job={job} onEditClick={handleEditClick} />
+            }
           </Modal>
         )}
     </div>
