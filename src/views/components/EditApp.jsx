@@ -7,7 +7,10 @@ export const EditApp = ({ onSubmit }) => {
     position: '',
     company: '',
     location: '',
-    notes: ''
+    notes: '',
+    status: 'open',
+    interview_date: '',
+    interview_location: ''
   });
 
   const handleChange = (event) => {
