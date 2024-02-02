@@ -125,6 +125,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
                 value={convertToCustomFormat(jobData.interview_date)}
                 onChange={handleChange}
                 className="border border-black rounded-md p-1"
+                required
               />
             </div>
             <div className="flex gap-3 items-center">
