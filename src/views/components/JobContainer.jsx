@@ -25,7 +25,18 @@ export const JobContainer = ({ job }) => {
   return (
     <div>
       <div
-        className="flex justify-between items-center bg-white text-black rounded-md px-5 py-3 cursor-pointer"
+        className={`flex justify-between items-center bg-white text-black rounded-md px-5 py-3 cursor-pointer ${
+          (() => {
+            switch (job.status) {
+              case 'interviewing':
+                return 'border-l-8 border-l-indigo-500';
+              case 'no offer':
+                return 'border-l-8 border-l-red-500'; 
+              default:
+                return 'border-l-8 border-l-white-500'; // No border
+            }
+          })()
+        }`}
         onClick={() => setModalOpen(true)}
       >
         <div className="job-info flex flex-col w-1/3">
