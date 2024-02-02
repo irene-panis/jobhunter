@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AuthService from '../../utils/decode.js';
+import { convertToDateTimeObject, convertToCustomFormat } from '../../utils/formatDate.js';
 
 export const EditApp = ({ job, onSubmit, onViewClick }) => {
 
@@ -9,7 +10,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
     location: job.location,
     notes: job.notes,
     status: job.status,
-    interview_date: job.interview_date,
+    interview_date: job.interview_date === null ? '' : job.interview_date,
     interview_location: job.interview_location
   });
 
@@ -22,6 +23,11 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      jobData.interview_date = convertToDateTimeObject(jobData.interview_date);
+      if (jobData.status !== 'interviewing') {
+        jobData.interview_date = null;
+        jobData.interview_location = '';
+      }
       const jobId = job._id;
       const postURL = `http://localhost:3001/jobs/${jobId}`;
       const userToken = AuthService.getToken();
@@ -93,6 +99,46 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
             onChange={handleChange}
           ></textarea>
         </div>
+
+        <div className="uppercase text-sm flex gap-3">
+          <label htmlFor="status">Status:</label>
+          <select
+            id="status"
+            name="status"
+            value={jobData.status}
+            onChange={handleChange}
+            className="border border-black rounded-md p-1"
+          >
+            <option value="open">Open</option>
+            <option value="interviewing">Interviewing</option>
+            <option value="no offer">No Offer</option>
+          </select>
+        </div>
+
+        {jobData.status === "interviewing" && (
+          <div className="uppercase text-sm flex justify-between">
+            <div className="flex gap-3 items-center">
+              <label htmlFor="interview_date">Interview Date:</label>
+              <input
+                type="datetime-local"
+                name="interview_date"
+                value={convertToCustomFormat(jobData.interview_date)}
+                onChange={handleChange}
+                className="border border-black rounded-md p-1"
+              />
+            </div>
+            <div className="flex gap-3 items-center">
+              <label htmlFor="interview_location">Interview Location:</label>
+              <input
+                type="text"
+                name="interview_location"
+                value={jobData.interview_location}
+                onChange={handleChange}
+                className="border border-black rounded-md p-1"
+              />
+            </div>
+          </div>
+        )}
 
         <button
           type="submit"

@@ -1,8 +1,8 @@
-import { formatDate } from "../../utils/formatDate";
+import { formatDate, formatInterviewTime } from "../../utils/formatDate";
 
 export const ViewApp = ({ job, onEditClick }) => {
   return (
-    <div className="flex flex-col justify-between bg-white text-black rounded-md px-5 py-3">
+    <div className="flex flex-col gap-3 justify-between bg-white text-black rounded-md px-5 py-3">
       <div className="job-info flex flex-col">
         <p className="font-bold text-2xl">{ job.position }</p>
         <p><span className="font-bold">Company: </span>{ job.company }</p>
@@ -22,8 +22,8 @@ export const ViewApp = ({ job, onEditClick }) => {
       { (job.status === 'interviewing') &&
         (
           <div className="interview-info">
-            <p><span className="font-bold">Interview date: </span> { job.interview_date }</p>
-            <p><span className="font-bold">Interview location: </span> { job.location }</p>
+            <p><span className="font-bold">Interview date: </span> { formatInterviewTime(job.interview_date) }</p>
+            <p><span className="font-bold">Interview location: </span> { job.interview_location }</p>
           </div>
         )
       }

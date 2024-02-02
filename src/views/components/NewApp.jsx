@@ -7,7 +7,10 @@ export const NewApp = ({ onSubmit }) => {
     position: '',
     company: '',
     location: '',
-    notes: ''
+    notes: '',
+    status: 'open',
+    interview_date: null,
+    interview_location: ''
   });
 
   const handleChange = (event) => {
@@ -19,6 +22,7 @@ export const NewApp = ({ onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log("Submitting job data: ", jobData);
       const postURL = 'http://localhost:3001/jobs';
       const userToken = AuthService.getToken();
       await fetch(postURL, {

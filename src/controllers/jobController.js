@@ -48,12 +48,23 @@ const jobController = {
   },
   addJob: async (req, res) => {
     try {
-      const { position, company, location, notes } = req.body;
+      const { 
+        position,
+        company, 
+        location, 
+        notes,
+        status,
+        interview_date,
+        interview_location 
+      } = req.body;
       const job = await Job.create({
         position,
         company,
         location,
         notes,
+        status,
+        interview_date,
+        interview_location 
       });
       const filter = { email: req.user.data.email };
       const update = { $push: { applied_jobs: job._id } };
