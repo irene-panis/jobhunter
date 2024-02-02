@@ -28,6 +28,7 @@ export const Applications = () => {
     getJobs();
   }, []);
 
+
   return (
     <div className="flex flex-col gap-5">
       <p className="font-bold text-2xl">Applications</p>

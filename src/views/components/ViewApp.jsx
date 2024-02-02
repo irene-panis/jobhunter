@@ -1,27 +1,19 @@
 import { formatDate, formatInterviewTime } from "../../utils/formatDate";
-import AuthService from '../../utils/decode';
+import { useState } from 'react';
+import { ConfirmDelete } from "./ConfirmDelete.jsx";
 
-export const ViewApp = ({ job, onEditClick, onDeleteClick }) => {
+export const ViewApp = ({ job, onEditClick, onConfirmDelete }) => {
 
-  const handleDelete = async () => {
-    try {
-      const jobId = job._id;
-      const deleteURL = `http://localhost:3001/jobs/${jobId}`;
-      const userToken = AuthService.getToken();
-      await fetch(deleteURL, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${userToken}`
-        },
-      });
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-      onDeleteClick();
-      console.log('Job deleted successfully');
-    } catch (err) {
-      console.log("Job deletion unsuccessful");
-      console.error(err);
-    }
+  const handleDelete = () => {
+    setShowConfirmModal(true);
   }
+
+  const handleCloseConfirm = async () => {
+    setShowConfirmModal(false);
+  }
+
   return (
     <div className="flex flex-col gap-3 justify-between bg-white text-black rounded-md px-5 py-3">
       <div className="job-info flex flex-col">
@@ -64,6 +56,15 @@ export const ViewApp = ({ job, onEditClick, onDeleteClick }) => {
           Delete
         </button>
       </div>
+      {
+        showConfirmModal && (
+          <ConfirmDelete 
+            job={job}
+            onChoice={handleCloseConfirm}
+            onConfirmDelete={onConfirmDelete}
+          />
+        )
+      }
     </div>
   );
 }

@@ -62,7 +62,7 @@ export const JobContainer = ({ job }) => {
             <ViewApp
               job={job}
               onEditClick={handleEditClick}
-              onDeleteClick={handleButtonClick}
+              onConfirmDelete={handleButtonClick}
             />
           )}
         </Modal>
