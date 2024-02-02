@@ -145,6 +145,15 @@ const jobController = {
         return res.status(404).json({ message: "Job not found" });
       }
 
+      const user = await User
+        .findOne({ email: req.user.data.email });
+      
+      await User.findByIdAndUpdate(
+        user._id,
+        { $pull: { applied_jobs: jobId } },
+        { new: true }
+      );
+
       return res.json({ message: "Job deleted successfully" });
     } catch (err) {
       return res.status(500).send(err);

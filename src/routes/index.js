@@ -16,6 +16,6 @@ router.get('/jobs/interviews', authenticateToken, jobController.getInterviews);
 router.get('/jobs/:id', jobController.getJobById);
 router.post('/jobs', authenticateToken, jobController.addJob);
 router.put('/jobs/:id', authenticateToken, jobController.updateJob);
-router.delete('/jobs/:id', jobController.deleteJob);
+router.delete('/jobs/:id', authenticateToken, jobController.deleteJob);
 
 export default router;

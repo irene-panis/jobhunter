@@ -49,13 +49,23 @@ const userController = {
       const user = await User.findOne({ email: email });
 
       if (!user) {
-        return res.status(400).json({ message: "Invalid credentials" });
+        return res
+          .status(400)
+          .json({ 
+            error: 'invalid_credentials',
+            message: "Invalid credentials" 
+          });
       }
 
       const passwordMatch = await user.isCorrectPassword(password);
 
       if (!passwordMatch) {
-        return res.status(400).json({ message: "Invalid credentials" });
+        return res
+          .status(400)
+          .json({ 
+            error: 'invalid_credentials',
+            message: "Invalid credentials" 
+        });
       }
 
       const accessToken = signToken(user);

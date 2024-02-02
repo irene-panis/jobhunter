@@ -1,6 +1,27 @@
 import { formatDate, formatInterviewTime } from "../../utils/formatDate";
+import AuthService from '../../utils/decode';
 
-export const ViewApp = ({ job, onEditClick }) => {
+export const ViewApp = ({ job, onEditClick, onDeleteClick }) => {
+
+  const handleDelete = async () => {
+    try {
+      const jobId = job._id;
+      const deleteURL = `http://localhost:3001/jobs/${jobId}`;
+      const userToken = AuthService.getToken();
+      await fetch(deleteURL, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        },
+      });
+
+      onDeleteClick();
+      console.log('Job deleted successfully');
+    } catch (err) {
+      console.log("Job deletion unsuccessful");
+      console.error(err);
+    }
+  }
   return (
     <div className="flex flex-col gap-3 justify-between bg-white text-black rounded-md px-5 py-3">
       <div className="job-info flex flex-col">
@@ -27,13 +48,20 @@ export const ViewApp = ({ job, onEditClick }) => {
           </div>
         )
       }
-      <div className="edit-button flex justify-end">
+      <div className="edit-button flex justify-end gap-2">
         <button 
           type="button" 
           className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 rounded-md text-off-white py-1 px-3"
           onClick={onEditClick}
         >
           Edit
+        </button>
+        <button 
+          type="button" 
+          className="bg-[#fa7a70] hover:bg-[#fc9c95] ease-in-out duration-300 rounded-md text-white py-1 px-3"
+          onClick={handleDelete}
+        >
+          Delete
         </button>
       </div>
     </div>
