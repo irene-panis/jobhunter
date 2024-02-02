@@ -22,7 +22,6 @@ export const NewApp = ({ onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("Submitting job data: ", jobData);
       const postURL = 'http://localhost:3001/jobs';
       const userToken = AuthService.getToken();
       await fetch(postURL, {
