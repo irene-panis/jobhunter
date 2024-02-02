@@ -9,11 +9,17 @@ export const Login = (props) => {
     }
   );
 
+  const [error, setError] = useState(false);
+
   const handleChange = (event) => {
     const data = {...userData};
     data[event.target.name] = event.target.value;
     setUserData(data);
+
+    // clear error when user modifies input
+    setError(false);
   };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,6 +36,9 @@ export const Login = (props) => {
       const data = await response.json();
       // error handling
       if (!response.ok) {
+        if (data.error === 'invalid_credentials') {
+          setError(true);
+        }
         throw new Error(`Error - Status: ${response.status}`);
       }
 
@@ -75,6 +84,7 @@ export const Login = (props) => {
             />
           </div>
         </div>
+        {error && <span className="text-red-500 text-sm -mt-4">Invalid credentials. Please try again.</span>}
 
         <div className="buttonContainer flex">
           <button
