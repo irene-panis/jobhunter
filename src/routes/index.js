@@ -8,6 +8,7 @@ import jobController from '../controllers/jobController.js';
 // user routes go here
 router.post('/register', userController.register);
 router.post('/login', userController.login);
+router.put('/update/:id', authenticateToken, userController.updateUser);
 
 // job routes go here
 router.get('/jobs/all', authenticateToken, jobController.getUserJobs);

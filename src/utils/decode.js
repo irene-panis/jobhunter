@@ -23,6 +23,10 @@ class AuthService {
     localStorage.removeItem('id_token');
     window.location.reload();
   }
+
+  updateToken(idToken) {
+    localStorage.setItem('id_token', idToken);
+  }
 }
 
 export default new AuthService();
