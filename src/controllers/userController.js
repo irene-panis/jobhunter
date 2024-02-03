@@ -77,9 +77,28 @@ const userController = {
     const userId = req.params.id;
 
     try {
+      const updateObject = {};
+
+      if (req.body.first_name) {
+        updateObject.first_name = req.body.first_name;
+      }
+
+      if (req.body.email) {
+        updateObject.email = req.body.email;
+        const user = await User.findById(userId);
+        const password = req.body.password;
+        const passwordMatch = await user.isCorrectPassword(password);
+        if (!passwordMatch) {
+          return res.status(400).json({
+            error: "invalid_credentials",
+            message: "Invalid credentials",
+          });
+        }
+      }
+
       const updatedUser = await User.findOneAndUpdate(
         { _id: userId },
-        { $set: req.body },
+        { $set: updateObject },
         { new: true, useFindAndModify: false }
       );
 
