@@ -14,7 +14,6 @@ router.put('/update/:id', authenticateToken, userController.updateUser);
 router.get('/jobs/all', authenticateToken, jobController.getUserJobs);
 router.get('/jobs/recent', authenticateToken, jobController.getRecentJobs);
 router.get('/jobs/interviews', authenticateToken, jobController.getInterviews);
-router.get('/jobs/:id', jobController.getJobById);
 router.post('/jobs', authenticateToken, jobController.addJob);
 router.put('/jobs/:id', authenticateToken, jobController.updateJob);
 router.delete('/jobs/:id', authenticateToken, jobController.deleteJob);
