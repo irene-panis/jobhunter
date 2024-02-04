@@ -7,6 +7,7 @@ export const ChangePass = () => {
   const [confirmNewPass, setConfirmNewPass] = useState('');
   const [error, setError] = useState(false);
   const [passMatch, setPassMatch] = useState(true);
+  const [passLong, setPassLong] = useState(true);
 
   // check for matching passwords
   useEffect(() => {
@@ -20,10 +21,12 @@ export const ChangePass = () => {
 
   const handleNewChange = (event) => {
     setNewPassword(event.target.value);
+    setPassLong(true);
   }
 
   const handleConfirmChange = (event) => {
     setConfirmNewPass(event.target.value);
+    setPassLong(true);
   }
   
   const handleSubmit = async (event) => {
@@ -50,6 +53,8 @@ export const ChangePass = () => {
       if (!response.ok) {
         if (data.error === 'invalid_credentials') {
           setError(true);
+        } else if (data.error === 'validation_error') {
+          setPassLong(false);
         }
         throw new Error(`Error - Status: ${response.status}`);
       }
@@ -114,6 +119,7 @@ export const ChangePass = () => {
           />
         </div>
         {!passMatch && <span className="text-red-500 text-sm -mt-1">New passwords must match.</span>}
+        {!passLong && <span className="text-red-500 text-sm -mt-1">Passwords must be at least 8 characters.</span>}
         <div>
           <button
             type="submit"

@@ -117,6 +117,12 @@ const userController = {
             message: "Invalid credentials",
           });
         }
+        if (req.body.new_pass.length < 8) {
+          return res.status(400).json({
+            error: "validation_error",
+            message: "Password must be at least 8 characters.",
+          });
+        }
         user.password = req.body.new_pass;
       }
 
