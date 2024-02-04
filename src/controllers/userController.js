@@ -75,17 +75,19 @@ const userController = {
   },
   updateUser: async (req, res) => {
     const userId = req.params.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
     try {
-      const updateObject = {};
 
       if (req.body.first_name) {
-        updateObject.first_name = req.body.first_name;
+        user.first_name = req.body.first_name;
       }
 
       if (req.body.email) {
-        updateObject.email = req.body.email;
-        const user = await User.findById(userId);
         const password = req.body.password;
         const passwordMatch = await user.isCorrectPassword(password);
         if (!passwordMatch) {
@@ -94,26 +96,31 @@ const userController = {
             message: "Invalid credentials",
           });
         }
+        user.email = req.body.email;
       }
 
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: userId },
-        { $set: updateObject },
-        { new: true, useFindAndModify: false }
-      );
-
-      if (!updatedUser) {
-        return res.status(404).json({ message: "User not found" });
+      if (req.body.new_pass) {
+        const currentPass = req.body.current_pass;
+        const passwordMatch = await user.isCorrectPassword(currentPass);
+        if (!passwordMatch) {
+          return res.status(400).json({
+            error: "invalid_credentials",
+            message: "Invalid credentials",
+          });
+        }
+        user.password = req.body.new_pass;
       }
 
-      const newToken = signToken(updatedUser);
+      await user.save();
+
+      const accessToken = signToken(user);
 
       return res
         .status(200)
         .json({ 
           message: "User updated successfully", 
-          user: updatedUser,
-          accessToken: newToken
+          user: user,
+          accessToken: accessToken
         });
     } catch (error) {
       console.error(error);

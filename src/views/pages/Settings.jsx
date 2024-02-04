@@ -1,5 +1,6 @@
 import { ChangeName } from '../components/ChangeName';
 import { ChangeEmail } from '../components/ChangeEmail';
+import { ChangePass } from '../components/ChangePass';
 
 export const Settings = () => {
 
@@ -9,32 +10,7 @@ export const Settings = () => {
       <div className="settings-container flex flex-col gap-5">
         <ChangeName/>
         <ChangeEmail/>
-        <div className="change-password">
-          <h2 className="font-bold text-xl">Change Password</h2>
-          <form 
-            className="pw-form flex flex-col gap-2"
-            id="change-pw"
-          >
-            <div>
-              <label htmlFor="current-pw" className="uppercase text-sm">Current Password</label>
-              <br />
-              <input type="text" id="current-pw" name="password" required />
-            </div>
-            <div>
-              <label htmlFor="new-pw" className="uppercase text-sm">Create New Password</label>
-              <br />
-              <input type="text" id="new-pw" name="newPw" required />
-            </div>
-            <div>
-              <label htmlFor="confirm-new-pw" className="uppercase text-sm">Confirm New Password</label>
-              <br />
-              <input type="text" id="confirm-new-pw" name="confirmNewPw" required />
-            </div>
-            <div className="save">
-              <button className="bg-dm-purple hover:bg-dm-purple-hov ease-in-out duration-300 py-1 px-3 rounded-full">Save</button>
-            </div>
-          </form>
-        </div>
+        <ChangePass/>
         <div className="delete-account">
           <button className="bg-red-600 hover:bg-red-400 ease-in-out duration-300 py-1 px-3 rounded-full">Delete Account</button>
         </div>
