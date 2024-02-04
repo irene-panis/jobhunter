@@ -17,7 +17,6 @@ export const Header = () => {
     <div className="h-[12rem] bg-dark-mode flex items-center">
       <div className="text w-3/4 pl-10">
         <h2 className="text-4xl">Hi there, {name}.</h2>
-        <p>This is a motivational quote.</p>
       </div>
       <div className="logContainer">
         <button 
