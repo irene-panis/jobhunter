@@ -96,6 +96,15 @@ const userController = {
             message: "Invalid credentials",
           });
         }
+        if (user.email !== req.body.email) {
+          const testEmail = await User.findOne({ email: req.body.email });
+          if (testEmail) {
+            return res.status(400).json({
+              error: "dupe_email",
+              message: "Duplicate email",
+            });
+          }
+        }
         user.email = req.body.email;
       }
 

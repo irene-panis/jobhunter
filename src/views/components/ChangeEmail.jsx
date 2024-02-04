@@ -6,9 +6,11 @@ export const ChangeEmail = () => {
   const [email, setEmail] = useState(user.data.email);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [dupeEmail, setDupeEmail] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    setDupeEmail(false);
   }
 
   const handlePassChange = (event) => {
@@ -38,12 +40,13 @@ export const ChangeEmail = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        if (data.error === 'invalid_credentials') {
+        if (data.error === 'dupe_email') {
+          setDupeEmail(true);
+        } else if (data.error === 'invalid_credentials') {
           setError(true);
         }
         throw new Error(`Error - Status: ${response.status}`);
       }
-
       AuthService.updateToken(data.accessToken);
     } catch (err) {
       console.error(err);
@@ -73,6 +76,7 @@ export const ChangeEmail = () => {
             required
           />
         </div>
+        {dupeEmail && <span className="text-red-500 text-sm -mt-1">Email is already in use.</span>}
         <div>
           <label htmlFor="password" className="uppercase text-sm">
             Enter Password
