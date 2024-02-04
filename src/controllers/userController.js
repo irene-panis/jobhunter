@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import jwt from 'jsonwebtoken';
+import Job from "../models/Job.js";
 
 const userController = {
   register: async (req, res) => {
@@ -159,6 +160,13 @@ const userController = {
           error: "invalid_credentials",
           message: "Invalid credentials",
         });
+      }
+
+      // convert ObjectIDs to strings
+      const jobIds = user.applied_jobs.map(id => id.toString());
+      // delete each job associated with the user
+      for (const jobId of jobIds) {
+        await Job.findByIdAndDelete(jobId);
       }
 
       await User.findByIdAndDelete(userId);

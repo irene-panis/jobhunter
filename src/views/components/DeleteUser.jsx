@@ -37,6 +37,7 @@ export const DeleteUser = ({ onClose }) => {
       }
   
       onClose();
+      AuthService.logout();
     } catch (err) {
       console.error('Failed to delete user', err);
     }
