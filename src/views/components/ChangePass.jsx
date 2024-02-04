@@ -59,6 +59,7 @@ export const ChangePass = () => {
         throw new Error(`Error - Status: ${response.status}`);
       }
 
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }

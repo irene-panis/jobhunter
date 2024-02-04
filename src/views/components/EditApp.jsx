@@ -41,8 +41,9 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
         body: JSON.stringify(jobData)
       });
       onSubmit();
+      window.location.reload();
     } catch (err) {
-      console.log("Job creation unsuccessful");
+      console.log("Job update unsuccessful");
       console.error(err);
     }
   }

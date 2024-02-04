@@ -29,6 +29,7 @@ export const ChangeName = () => {
       });
       const data = await response.json();
       AuthService.updateToken(data.accessToken);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }

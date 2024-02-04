@@ -30,6 +30,7 @@ export const ViewApp = ({ job, onEditClick, onConfirmDelete }) => {
   
       handleCloseConfirm();
       onConfirmDelete();
+      window.location.reload();
     } catch (err) {
       console.error('Failed to delete job', err);
     }

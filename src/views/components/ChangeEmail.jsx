@@ -48,6 +48,7 @@ export const ChangeEmail = () => {
         throw new Error(`Error - Status: ${response.status}`);
       }
       AuthService.updateToken(data.accessToken);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
