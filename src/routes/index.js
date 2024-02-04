@@ -9,6 +9,7 @@ import jobController from '../controllers/jobController.js';
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.put('/update/:id', authenticateToken, userController.updateUser);
+router.delete('/delete/:id', authenticateToken, userController.deleteUser)
 
 // job routes go here
 router.get('/jobs/all', authenticateToken, jobController.getUserJobs);

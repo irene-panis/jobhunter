@@ -1,6 +1,7 @@
 import { formatDate, formatInterviewTime } from "../../utils/formatDate";
 import { useState } from 'react';
 import { ConfirmDelete } from "./ConfirmDelete.jsx";
+import AuthService from '../../utils/decode';
 
 export const ViewApp = ({ job, onEditClick, onConfirmDelete }) => {
 
@@ -12,6 +13,26 @@ export const ViewApp = ({ job, onEditClick, onConfirmDelete }) => {
 
   const handleCloseConfirm = async () => {
     setShowConfirmModal(false);
+  }
+
+  const handleConfirm = async () => {
+    try {
+      const jobId = job._id; 
+      const deleteURL = `http://localhost:3001/jobs/${jobId}`;
+      const userToken = AuthService.getToken();
+      
+      await fetch(deleteURL, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        },
+      });
+  
+      handleCloseConfirm();
+      onConfirmDelete();
+    } catch (err) {
+      console.error('Failed to delete job', err);
+    }
   }
 
   return (
@@ -59,10 +80,12 @@ export const ViewApp = ({ job, onEditClick, onConfirmDelete }) => {
       {
         showConfirmModal && (
           <ConfirmDelete 
-            job={job}
             onChoice={handleCloseConfirm}
-            onConfirmDelete={onConfirmDelete}
-          />
+            onConfirm={handleConfirm}
+          >
+            Are you sure you want to delete your application for  
+            <span className="font-bold">{job.position}</span> at <span className="font-bold">{job.company}</span>?
+          </ConfirmDelete>
         )
       }
     </div>

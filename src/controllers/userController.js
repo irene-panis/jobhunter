@@ -142,6 +142,32 @@ const userController = {
       return res.status(500).json({ error: error.message });
     }
   },
+  deleteUser: async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      const passwordInput = req.body.password;
+
+      const passwordMatch = await user.isCorrectPassword(passwordInput);
+
+      if (!passwordMatch) {
+        return res.status(400).json({
+          error: "invalid_credentials",
+          message: "Invalid credentials",
+        });
+      }
+
+      await User.findByIdAndDelete(userId);
+  
+      return res.json({ message: "User deleted successfully" });
+    } catch (err) {
+      return res.status(500).send(err);
+    }
+  }
 };
 
 export default userController;
