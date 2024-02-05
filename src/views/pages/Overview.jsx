@@ -94,7 +94,7 @@ export const Overview = () => {
         </div>
         <div className="chartSection col-start-3 col-span-1 row-span-3">
           {
-            <Chart/>
+            <Chart counts={counts}/>
           }
         </div>
         <div className="interviewsSection flex flex-col gap-2 col-span-2 row-start-3">
