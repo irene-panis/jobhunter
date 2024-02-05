@@ -78,43 +78,42 @@ export const Overview = () => {
     getCounts();
   }, []);
 
-  const heightCalc = {
-    minHeight: `calc(100% - 50px)`,
-    maxHeight: `calc(100% - 50px)`
-  }
+
+  const apps = (counts.open + counts.interviewing + counts['no offer']).toString();
 
   return (
-    <div className="h-full flex flex-col gap-2">
-      <p className="font-bold text-2xl">Applications</p>
-      <div className="grid grid-cols-3 grid-rows-6 overflow-hidden gap-4" style={heightCalc}>
-        <div className="numbersSection flex justify-between col-span-2 row-span-2">
+    <div className="h-full flex flex-col gap-2" >
+      <p className="font-bold text-2xl">Overview</p>
+      <div className="grid grid-cols-3 grid-rows-5 gap-4">
+        <div className="numbersSection flex justify-between col-span-2 row-span-1">
           <StatBox number={counts.open || 0} status={'open'} />
           <StatBox number={counts.interviewing || 0} status={'interviewing'} />
           <StatBox number={counts['no offer'] || 0} status={'no offer'} />
+          <StatBox number={apps} status={'total'} />
         </div>
-        <div className="chartSection col-start-3 col-span-1 row-span-5 bg-dm-black rounded-md p-10 flex flex-col gap-4 shadow-md">
+        <div className="chartSection col-start-3 col-span-1 row-span-4 bg-dm-black rounded-md p-10 flex flex-col gap-4 shadow-md">
           <p className="font-bold text-2xl">Snapshot</p>
           {
             <Chart counts={counts}/>
           }
         </div>
-        <div className="interviewsSection flex flex-col gap-2 col-span-2 row-start-3">
-          <h2>Your Next Interview</h2>
+        <div className="interviewsSection flex flex-col gap-2 col-span-2 row-start-2 gap-2 justify-center">
+          <h2 className="font-bold text-xl">Your Next Interview</h2>
           <div className="jobCards flex flex-col gap-2">
             {interview.map((job) => (
               <JobContainer key={job._id} job={job} />
             ))}
           </div> 
         </div>
-        <div className="jobsSection flex flex-col gap-2 col-span-2 row-start-4 row-end-7">
-          <h2>Recent Jobs</h2>
-          <div className="jobCards flex flex-col gap-2">
+        <div className="jobsSection flex flex-col col-span-2 row-start-3 row-end-7 gap-2">
+          <h2 className="font-bold text-xl">Recent Jobs</h2>
+          <div className="jobCards flex flex-col gap-4">
             {jobs.map((job) => (
               <JobContainer key={job._id} job={job} />
             ))}
           </div>
         </div>
-        <div className="col-start-3 h-[71px] bg-dm-black rounded-md flex justify-center items-center shadow-md">
+        <div className="col-start-3 row-start-5 row-end-7 bg-dm-black rounded-md flex justify-center items-center shadow-md">
           <p>made with 💜 by <a href="https://github.com/irene-panis" className="underline hover:bg-white hover:text-black ease-in-out duration-300">irene panis</a>.</p>
         </div>
       </div>

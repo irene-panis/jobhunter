@@ -24,10 +24,7 @@ export const Chart = ({ counts }) => {
       },
     ],
   };
-  const options = {
-    maintainAspectRatio: false,
-  }
   return (
-  <Doughnut options={options} data={data}/>
+  <Doughnut data={data}/>
   );
 }

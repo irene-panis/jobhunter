@@ -14,7 +14,7 @@ function App() {
             <Navbar/>
             <div className="header-and-content w-full min-h-full flex flex-col text-white">
               <Header/>
-              <main className="h-[87.5%] pl-10 pr-10 flex flex-col">
+              <main className="h-full pl-10 pr-10 flex flex-col">
                 <Outlet/>
               </main>  
             </div>   

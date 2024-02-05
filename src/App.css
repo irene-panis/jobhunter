@@ -8,3 +8,8 @@
 
 /* any css that is too hard to implement w tailwind goes here */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@100;400&family=Outfit:wght@700&family=Roboto:wght@400;700&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+}

@@ -17,7 +17,8 @@ module.exports = {
       }
     },
     fontFamily: {
-      'montserrat': ['Montserrat', 'ui-sans-serif']
+      'montserrat': ['Montserrat', 'ui-sans-serif'],
+      'roboto': ['Roboto', 'ui-sans-serif']
     }
   },
   plugins: [],
