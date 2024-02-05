@@ -48,17 +48,20 @@ const jobController = {
       return res.status(500).json({ error: err.message });
     }
   },
-  getJobById: async (req, res) => {
+  getNextInterview: async (req, res) => {
     try {
-      const job = await Job.findOne({ _id: req.params.id });
-
-      if (!job) {
-        return res.status(404).json({ message: "Job not found" });
-      }
-
-      return res.status(200).json(job);
+      const user = await User
+        .findOne({ email: req.user.data.email })
+        .select('applied_jobs');
+      const jobIds = user.applied_jobs;
+      const jobs = await Job
+        .find({ _id: { $in: jobIds }, status: 'interviewing' })
+        .sort({ date_applied: -1 })
+        .limit(1);
+      return res.status(200).json(jobs);
     } catch (err) {
-      return res.status(500).send(err);
+      console.error(err.message);
+      return res.status(500).json({ error: err.message });
     }
   },
   addJob: async (req, res) => {

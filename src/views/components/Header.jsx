@@ -14,7 +14,7 @@ export const Header = () => {
   const name = user.data.first_name;
 
   return (
-    <div className="h-[12rem] bg-dark-mode flex items-center">
+    <div className="h-[12.5%] bg-dark-mode flex items-center">
       <div className="text w-3/4 pl-10">
         <h2 className="text-4xl">Hi there, {name}.</h2>
       </div>
