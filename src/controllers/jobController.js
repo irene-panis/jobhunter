@@ -64,6 +64,23 @@ const jobController = {
       return res.status(500).json({ error: err.message });
     }
   },
+  getAppCounts: async (req, res) => {
+    try {
+      const counts = await Job.aggregate([
+        { $group: { _id: '$status', count: { $sum: 1 } } }
+      ]);
+  
+      const countsMap = counts.reduce((acc, count) => {
+        acc[count._id] = count.count;
+        return acc;
+      }, {});
+  
+      res.status(200).json(countsMap);
+    } catch (error) {
+      console.error('Error getting job application counts:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
   addJob: async (req, res) => {
     try {
       const { 

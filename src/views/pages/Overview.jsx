@@ -54,6 +54,30 @@ export const Overview = () => {
     getInterview();
   }, []);
 
+  const [counts, setCounts] = useState({});
+
+  useEffect(() => {
+    const getCounts = async () => {
+      const userToken = AuthService.getToken();
+      try {
+        const getURL = "http://localhost:3001/jobs/counts";
+        const response = await fetch(getURL, {
+          method: "GET",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${userToken}`,
+          },
+        });
+        const data = await response.json();
+        setCounts(data);
+      } catch (error) {
+        console.error('Error fetching job application counts:', error);
+      }
+    };
+    getCounts();
+  }, []);
+
   const heightCalc = {
     minHeight: `calc(100% - 32px)`,
     maxHeight: `calc(100% - 32px)`
@@ -64,9 +88,9 @@ export const Overview = () => {
       <p className="font-bold text-2xl">Applications</p>
       <div className="grid grid-cols-3 grid-rows-6 overflow-hidden" style={heightCalc}>
         <div className="numbersSection flex justify-between col-span-2 row-span-2">
-          <StatBox number={69} status={'open'} />
-          <StatBox number={5} status={'interviewing'} />
-          <StatBox number={17} status={'no offer'} />
+          <StatBox number={counts.open || 0} status={'open'} />
+          <StatBox number={counts.interviewing || 0} status={'interviewing'} />
+          <StatBox number={counts['no offer'] || 0} status={'no offer'} />
         </div>
         <div className="chartSection col-start-3 col-span-1 row-span-3">
           {

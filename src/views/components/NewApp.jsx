@@ -34,7 +34,8 @@ export const NewApp = ({ onSubmit }) => {
         body: JSON.stringify(jobData)
       });
       onSubmit();
-      if (window.location.pathname === "/Applications") {
+      if (window.location.pathname === "/Applications" ||
+      window.location.pathname === "/Overview") {
         window.location.reload();
       }
     } catch (err) {
