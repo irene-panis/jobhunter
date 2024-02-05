@@ -52,13 +52,13 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
     <div className="flex flex-col items-center justify-center">
       <h2 className="text-2xl font-bold">Edit Application</h2>
       <form
-        className="flex flex-col gap-5 bg-white text-black rounded-md py-5 px-10 w-full"
+        className="flex flex-col gap-5 bg-dm-grey text-white rounded-md py-5 px-10 w-full"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="position">Position</label>
           <input
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             type="text"
             name="position"
             value={jobData.position}
@@ -70,7 +70,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="company">Company</label>
           <input
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             type="text"
             name="company"
             value={jobData.company}
@@ -82,7 +82,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="location">Location</label>
           <input
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             type="text"
             name="location"
             value={jobData.location}
@@ -94,7 +94,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="notes">Notes</label>
           <textarea
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             name="notes"
             value={jobData.notes}
             onChange={handleChange}
@@ -108,7 +108,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
             name="status"
             value={jobData.status}
             onChange={handleChange}
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
           >
             <option value="open">Open</option>
             <option value="interviewing">Interviewing</option>
@@ -125,7 +125,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
                 name="interview_date"
                 value={convertToCustomFormat(jobData.interview_date)}
                 onChange={handleChange}
-                className="border border-black rounded-md p-1"
+                className="border border-black rounded-md p-1 text-black"
                 required
               />
             </div>
@@ -136,7 +136,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
                 name="interview_location"
                 value={jobData.interview_location}
                 onChange={handleChange}
-                className="border border-black rounded-md p-1"
+                className="border border-black rounded-md p-1 text-black"
               />
             </div>
           </div>

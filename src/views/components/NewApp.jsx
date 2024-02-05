@@ -48,7 +48,7 @@ export const NewApp = ({ onSubmit }) => {
     <div className="flex flex-col items-center justify-center">
       <h2 className="text-2xl font-bold">Submit New Application</h2>
       <form
-        className="flex flex-col gap-5 bg-white text-black rounded-md py-5 px-10 w-full"
+        className="flex flex-col gap-5 bg-dm-grey text-white rounded-md py-5 px-10 w-full"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col uppercase text-sm">

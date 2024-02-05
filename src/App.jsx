@@ -10,7 +10,7 @@ function App() {
     <>
       {
         AuthService.loggedIn() ? (
-          <div className="flex w-full min-h-screen bg-dark-mode text-off-white font-montserrat">
+          <div className="flex w-full min-h-screen bg-dm-grey text-off-white font-montserrat">
             <Navbar/>
             <div className="header-and-content w-full min-h-full flex flex-col text-white">
               <Header/>
@@ -20,7 +20,7 @@ function App() {
             </div>   
           </div>
         ) : (
-          <div className="flex flex min-h-screen bg-dark-mode text-off-white font-montserrat">
+          <div className="flex flex min-h-screen bg-dm-grey text-off-white font-montserrat">
             <Landing/>
           </div>
         )

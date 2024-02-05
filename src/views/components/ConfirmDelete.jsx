@@ -2,7 +2,7 @@ export const ConfirmDelete = ({ onChoice, children, onConfirm }) => {
 
   return (
     <div className="modal-container fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 text-black">
-      <div className="modal bg-white rounded-md p-8 w-1/2 flex flex-col gap-3">
+      <div className="modal bg-dm-grey text-white rounded-md p-8 w-1/2 flex flex-col gap-3">
         <div className="modal-content">
           {children}
         </div>

@@ -37,7 +37,7 @@ export const ViewApp = ({ job, onEditClick, onConfirmDelete }) => {
   }
 
   return (
-    <div className="flex flex-col gap-3 justify-between bg-white text-black rounded-md px-5 py-3">
+    <div className="flex flex-col gap-3 justify-between bg-dm-grey text-white rounded-md px-5 py-3">
       <div className="job-info flex flex-col">
         <p className="font-bold text-2xl">{ job.position }</p>
         <p><span className="font-bold">Company: </span>{ job.company }</p>

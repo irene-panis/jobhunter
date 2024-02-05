@@ -79,20 +79,21 @@ export const Overview = () => {
   }, []);
 
   const heightCalc = {
-    minHeight: `calc(100% - 32px)`,
-    maxHeight: `calc(100% - 32px)`
+    minHeight: `calc(100% - 50px)`,
+    maxHeight: `calc(100% - 50px)`
   }
 
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col gap-2">
       <p className="font-bold text-2xl">Applications</p>
-      <div className="grid grid-cols-3 grid-rows-6 overflow-hidden" style={heightCalc}>
+      <div className="grid grid-cols-3 grid-rows-6 overflow-hidden gap-4" style={heightCalc}>
         <div className="numbersSection flex justify-between col-span-2 row-span-2">
           <StatBox number={counts.open || 0} status={'open'} />
           <StatBox number={counts.interviewing || 0} status={'interviewing'} />
           <StatBox number={counts['no offer'] || 0} status={'no offer'} />
         </div>
-        <div className="chartSection col-start-3 col-span-1 row-span-3">
+        <div className="chartSection col-start-3 col-span-1 row-span-5 bg-dm-black rounded-md p-10 flex flex-col gap-4 shadow-md">
+          <p className="font-bold text-2xl">Snapshot</p>
           {
             <Chart counts={counts}/>
           }
@@ -112,6 +113,9 @@ export const Overview = () => {
               <JobContainer key={job._id} job={job} />
             ))}
           </div>
+        </div>
+        <div className="col-start-3 h-[71px] bg-dm-black rounded-md flex justify-center items-center shadow-md">
+          <p>made with 💜 by <a href="https://github.com/irene-panis" className="underline hover:bg-white hover:text-black ease-in-out duration-300">irene panis</a>.</p>
         </div>
       </div>
     </div>
