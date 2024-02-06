@@ -72,7 +72,7 @@ export const Register = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const postURL = 'http://localhost:3001/register';
+      const postURL = 'https://jobhunterapp-345c7e7b566e.herokuapp.com/register';
       const response = await fetch(postURL, {
         method: 'POST',
         headers: {
