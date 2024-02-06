@@ -33,5 +33,5 @@ User information, such as display name, email, and password may be changed in **
 [source](https://github.com/alexandresanlim/Badges4-README.md-Profile?tab=readme-ov-file#how-to-use)
 
 ## About Me
-Hi! I'm Irene. :) I'm a recent graduate of The Coding Boot Camp @ UCSD where I learned to build full-stack web applications using the MERN stack. Right now I'm building cool stuff to put on my portfolio and master technologies old and new.
+Hi! I'm Irene. :) I'm a recent graduate of The Coding Boot Camp @ UCSD where I learned to build full-stack web applications using the MERN stack. Right now I'm building cool stuff to revamp my portfolio and master technologies old and new.
 
