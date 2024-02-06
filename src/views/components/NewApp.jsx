@@ -48,13 +48,13 @@ export const NewApp = ({ onSubmit }) => {
     <div className="flex flex-col items-center justify-center">
       <h2 className="text-2xl font-bold">Submit New Application</h2>
       <form
-        className="flex flex-col gap-5 bg-dm-grey text-black rounded-md py-5 px-10 w-full"
+        className="flex flex-col gap-5 bg-dm-grey text-white rounded-md py-5 px-10 w-full"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="position">Position</label>
           <input
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             type="text"
             name="position"
             value={jobData.position}
@@ -66,7 +66,7 @@ export const NewApp = ({ onSubmit }) => {
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="company">Company</label>
           <input
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             type="text"
             name="company"
             value={jobData.company}
@@ -78,7 +78,7 @@ export const NewApp = ({ onSubmit }) => {
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="location">Location</label>
           <input
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             type="text"
             name="location"
             value={jobData.location}
@@ -90,7 +90,7 @@ export const NewApp = ({ onSubmit }) => {
         <div className="flex flex-col uppercase text-sm">
           <label htmlFor="notes">Notes</label>
           <textarea
-            className="border border-black rounded-md p-1"
+            className="border border-black rounded-md p-1 text-black"
             name="notes"
             value={jobData.notes}
             onChange={handleChange}
