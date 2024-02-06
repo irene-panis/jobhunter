@@ -14,4 +14,22 @@ Listing an application as 'interviewing' allows the user to record an interview 
 
 User information, such as display name, email, and password may be changed in **Settings**.
 
-![A screenshot of the Jobhunter dashboard.](image.png)
+![A screenshot of the Jobhunter dashboard.](public/image.png)
+
+## Technologies
+![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![image](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![image](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
+![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![image](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![image](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![image](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![image](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
+
+[source](https://github.com/alexandresanlim/Badges4-README.md-Profile?tab=readme-ov-file#how-to-use)
+
+## About Me
+Hi! I'm Irene. :) I'm a recent graduate of The Coding Boot Camp @ UCSD where I learned to build full-stack web applications using the MERN stack. Right now I'm building cool stuff to put on my portfolio and master technologies old and new.
+
