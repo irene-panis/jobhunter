@@ -6,7 +6,7 @@ export const Navbar = () => {
     <div className="navContainer flex flex-col bg-dm-black py-10 px-20 gap-20 text-2xl lowercase">
       <h1 className="font-bold">
         <Link to="/">
-          JobTracker
+          Jobhunter
         </Link>
       </h1>
       <ul className="flex flex-col gap-10">
