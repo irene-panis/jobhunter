@@ -20,7 +20,7 @@ function App() {
             </div>   
           </div>
         ) : (
-          <div className="flex flex min-h-screen bg-dm-grey text-off-white font-montserrat">
+          <div className="flex flex min-h-screen bg-gradient-to-r from-dm-grey to-dm-black text-off-white font-montserrat">
             <Landing/>
           </div>
         )

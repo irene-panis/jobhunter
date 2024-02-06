@@ -113,83 +113,118 @@ export const Register = (props) => {
 
   return (
     <div className="formContainer flex flex-col gap-5 w-1/2 justify-center items-center">
-      <h2 className="text-3xl w-1/2 font-bold">Register</h2>
-      <form id="registrationForm" className="flex flex-col gap-5 w-1/2 justify-center" onSubmit={handleSubmit}>
-        <div className="inputContainer flex gap-10">
-          <div className="nameContainer flex flex-col gap-1">
-            <label className="text-xs uppercase" htmlFor="firstName">
-              First Name
-            </label>
-            <input
-              className="rounded-md text-black pl-2"
-              type="text"
-              name="first_name"
-              value={userData.name}
-              onChange={handleChange}
-              required
-            />
+      <div className="bg-dm-black py-10 px-20 rounded-md shadow-md">
+        <h2 className="text-3xl w-1/2 font-bold">Register</h2>
+        <form
+          id="registrationForm"
+          className="flex flex-col gap-5 justify-center"
+          onSubmit={handleSubmit}
+        >
+          <div className="inputContainer flex gap-10">
+            <div className="nameContainer flex flex-col gap-1">
+              <label className="text-xs uppercase" htmlFor="firstName">
+                First Name
+              </label>
+              <input
+                className="rounded-md text-black pl-2"
+                type="text"
+                name="first_name"
+                value={userData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="emailContainer flex flex-col gap-1">
+              <label className="text-xs uppercase" htmlFor="email">
+                Email
+              </label>
+              <input
+                className="rounded-md text-black pl-2"
+                type="email"
+                name="email"
+                value={userData.email}
+                onChange={handleChange}
+                required
+              />
+              {isEmailFound && (
+                <span className="text-red-500 text-sm">
+                  Email already registered.
+                </span>
+              )}
+              {!isValidEmail && (
+                <span className="text-red-500 text-sm">
+                  Email is not valid.
+                </span>
+              )}
+            </div>
           </div>
-          <div className="emailContainer flex flex-col gap-1">
-            <label className="text-xs uppercase" htmlFor="email">
-              Email
-            </label>
-            <input
-              className="rounded-md text-black pl-2"
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={handleChange}
-              required
-            />
-            {isEmailFound && <span className="text-red-500 text-sm">Email already registered.</span>}
-            {!isValidEmail && <span className="text-red-500 text-sm">Email is not valid.</span>}
-          </div>
-        </div>
 
-        <div className="inputContainer flex gap-10">
-          <div className="passwordContainer flex flex-col gap-1">
-            <label className="text-xs uppercase" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="rounded-md text-black pl-2"
-              type="password"
-              name="password"
-              value={userData.password}
-              onChange={handleChange}
-              required
-            />
+          <div className="inputContainer flex gap-10">
+            <div className="passwordContainer flex flex-col gap-1">
+              <label className="text-xs uppercase" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="rounded-md text-black pl-2"
+                type="password"
+                name="password"
+                value={userData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="confirmContainer flex flex-col gap-1">
+              <label className="text-xs uppercase" htmlFor="confirmPassword">
+                Confirm Password
+              </label>
+              <input
+                className="rounded-md text-black pl-2"
+                type="password"
+                id="confirm_pass"
+                name="confirm_pass"
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
-          <div className="confirmContainer flex flex-col gap-1">
-            <label className="text-xs uppercase" htmlFor="confirmPassword">
-              Confirm Password
-            </label>
-            <input
-              className="rounded-md text-black pl-2"
-              type="password"
-              id="confirm_pass"
-              name="confirm_pass"
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-        {!passMatch && <span className="text-red-500 text-sm -mt-4">Passwords do not match</span>}
-        {!isLongPass && <span className="text-red-500 text-sm -mt-4">Password must be at least 8 characters.</span>}
+          {!passMatch && (
+            <span className="text-red-500 text-sm -mt-4">
+              Passwords do not match
+            </span>
+          )}
+          {!isLongPass && (
+            <span className="text-red-500 text-sm -mt-4">
+              Password must be at least 8 characters.
+            </span>
+          )}
 
-        <div className="buttonContainer flex">
-          <button
-            type="submit"
-            className={`bg-dm-purple ${isFormDisabled ? '' : 'hover:bg-dm-purple-hov'} ease-in-out duration-300 py-2 px-3 rounded-md ${isFormDisabled && 'cursor-not-allowed opacity-50 hover:bg-dm-purple'}`}
-            disabled={isFormDisabled}
-          >
-            Register
-          </button>
-        </div>
-        <div className="buttonContainer flex">
-          <span>Already have an account? <button onClick={() => props.onFormSwitch('login')} className="underline decoration-solid hover:bg-off-white hover:text-black ease-in-out duration-300">Sign in</button></span>
-        </div>
-      </form>
+          <div className="buttonContainer flex">
+            <button
+              type="submit"
+              className={`bg-dm-purple ${
+                isFormDisabled ? "" : "hover:bg-dm-purple-hov"
+              } ease-in-out duration-300 py-2 px-3 rounded-md ${
+                isFormDisabled &&
+                "cursor-not-allowed opacity-50 hover:bg-dm-purple"
+              }`}
+              disabled={isFormDisabled}
+            >
+              Register
+            </button>
+          </div>
+          <div className="buttonContainer flex">
+            <span>
+              Already have an account?{" "}
+              <button
+                onClick={() => props.onFormSwitch("login")}
+                className="underline decoration-solid hover:bg-off-white hover:text-black ease-in-out duration-300"
+              >
+                Sign in
+              </button>
+            </span>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
