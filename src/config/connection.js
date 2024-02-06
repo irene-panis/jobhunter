@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://127.0.0.1:27017/jobtrackerDB');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/jobtrackerDB');
 
 export default mongoose.connection;
