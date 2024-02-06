@@ -32,6 +32,14 @@ User information, such as display name, email, and password may be changed in **
 
 [source](https://github.com/alexandresanlim/Badges4-README.md-Profile?tab=readme-ov-file#how-to-use)
 
+## Future Development
+This app is far from finished and is merely an MVP; ideally I'd like to go back and make it look a little more visually pleasing and add some more features.
+
+To-do list:
+- Make responsive
+- Add filters/sort under **Applications**
+- General style tweaking to make it look a little more polished
+
 ## About Me
 Hi! I'm Irene. :) I'm a recent graduate of The Coding Boot Camp @ UCSD where I learned to build full-stack web applications using the MERN stack. Right now I'm building cool stuff to revamp my portfolio and master technologies old and new.
 
