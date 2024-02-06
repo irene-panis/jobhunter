@@ -1,6 +1,5 @@
 import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
-import jwt from 'jsonwebtoken';
 import Job from "../models/Job.js";
 
 const userController = {
@@ -13,15 +12,10 @@ const userController = {
         password,
       });
       const accessToken = signToken(newUser);
-      const refreshToken = jwt.sign(
-        newUser.toJSON(),
-        process.env.JWT_REFRESH_SECRET
-      );
       res.status(201).json({
         message: "Registration successful",
         user: newUser,
         accessToken: accessToken,
-        refreshToken: refreshToken,
       });
     } catch (err) {
       // Handle unique constraint violation error
