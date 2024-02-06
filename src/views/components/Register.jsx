@@ -112,8 +112,8 @@ export const Register = (props) => {
   } 
 
   return (
-    <div className="formContainer flex flex-col gap-5 w-1/2 justify-center items-center">
-      <div className="bg-dm-black py-10 px-20 rounded-md shadow-md">
+    <div className="formContainer flex w-1/2 justify-center items-center">
+      <div className="bg-dm-black flex flex-col gap-5 py-10 px-20 rounded-md shadow-md">
         <h2 className="text-3xl w-1/2 font-bold">Register</h2>
         <form
           id="registrationForm"
