@@ -36,7 +36,7 @@ export const Overview = () => {
     const getInterview = async () => {
       const userToken = AuthService.getToken();
       try {
-        const getURL = "http://localhost:3001/jobs/next-interview";
+        const getURL = "https://jobhunterapp-345c7e7b566e.herokuapp.com/jobs/next-interview";
         const response = await fetch(getURL, {
           method: "GET",
           headers: {
@@ -60,7 +60,7 @@ export const Overview = () => {
     const getCounts = async () => {
       const userToken = AuthService.getToken();
       try {
-        const getURL = "http://localhost:3001/jobs/counts";
+        const getURL = "https://jobhunterapp-345c7e7b566e.herokuapp.com/jobs/counts";
         const response = await fetch(getURL, {
           method: "GET",
           headers: {
