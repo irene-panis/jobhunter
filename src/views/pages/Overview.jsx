@@ -78,10 +78,11 @@ export const Overview = () => {
     getCounts();
   }, []);
 
-  const countTotal = () => {
-    const apps = counts.open + counts.interviewing + counts['no offer'];
-    if (typeof apps !== "number") { return 0; }
-    return apps.toString();
+  const countApps = () => {
+    const open = (counts.open == undefined ? 0 : counts.open);
+    const interviewing = (counts.interviewing == undefined ? 0 : counts.interviewing);
+    const noOffer = (counts['no offer'] == undefined ? 0 : counts['no offer']);
+    return (open + interviewing + noOffer);
   }
 
   return (
@@ -92,7 +93,7 @@ export const Overview = () => {
           <StatBox number={counts.open || 0} status={'open'} />
           <StatBox number={counts.interviewing || 0} status={'interviewing'} />
           <StatBox number={counts['no offer'] || 0} status={'no offer'} />
-          <StatBox number={countTotal() || 0} status={'total'} />
+          <StatBox number={countApps()} status={'total'} />
         </div>
         <div className="chartSection col-start-3 col-span-1 row-span-4 bg-dm-black rounded-md p-10 flex flex-col gap-4 shadow-md">
           <p className="font-bold text-2xl">Snapshot</p>
