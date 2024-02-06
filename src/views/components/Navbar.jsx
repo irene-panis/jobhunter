@@ -5,8 +5,9 @@ export const Navbar = () => {
   return (
     <div className="navContainer flex flex-col bg-dm-black py-10 px-20 gap-20 text-2xl lowercase">
       <h1 className="font-bold">
-        <Link to="/">
-          Jobhunter
+        <Link to="/" className="flex gap-2">
+          <img className="w-9 h-9" src="/jobhunter-logo.png"/>
+          <span>Jobhunter</span>
         </Link>
       </h1>
       <ul className="flex flex-col gap-10">
