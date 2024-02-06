@@ -22,7 +22,7 @@ export const NewApp = ({ onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const postURL = 'http://localhost:3001/jobs';
+      const postURL = 'https://jobhunterapp-345c7e7b566e.herokuapp.com/jobs';
       const userToken = AuthService.getToken();
       await fetch(postURL, {
         method: 'POST',

@@ -12,7 +12,7 @@ export const Overview = () => {
     const getJobs = async () => {
       const userToken = AuthService.getToken();
       try {
-        const getURL = "http://localhost:3001/jobs/recent";
+        const getURL = "https://jobhunterapp-345c7e7b566e.herokuapp.com/jobs/recent";
         const response = await fetch(getURL, {
           method: "GET",
           headers: {

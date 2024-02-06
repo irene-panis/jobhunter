@@ -10,7 +10,7 @@ export const Interviews = () => {
     const getJobs = async () => {
       try {
         const userToken = AuthService.getToken();
-        const getURL = "http://localhost:3001/jobs/interviews";
+        const getURL = "https://jobhunterapp-345c7e7b566e.herokuapp.com/jobs/interviews";
         const response = await fetch(getURL, {
           method: "GET",
           headers: {

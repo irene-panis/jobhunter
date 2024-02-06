@@ -35,7 +35,7 @@ export const ChangePass = () => {
       const user = AuthService.getProfile();
       const id = user.data._id;
       const userToken = AuthService.getToken();
-      const putURL = `http://localhost:3001/update/${id}`;
+      const putURL = `https://jobhunterapp-345c7e7b566e.herokuapp.com/update/${id}`;
       const response = await fetch(putURL, {
         method: 'PUT',
         headers: {

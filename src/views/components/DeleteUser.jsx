@@ -14,7 +14,7 @@ export const DeleteUser = ({ onClose }) => {
   const handleConfirm = async () => {
     try {
       const id = user.data._id;
-      const deleteURL = `http://localhost:3001/delete/${id}`;
+      const deleteURL = `https://jobhunterapp-345c7e7b566e.herokuapp.com/delete/${id}`;
       const userToken = AuthService.getToken();
       
       const response = await fetch(deleteURL, {

@@ -24,7 +24,7 @@ export const Login = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const postURL = 'http://localhost:3001/login';
+      const postURL = 'https://jobhunterapp-345c7e7b566e.herokuapp.com/login';
       const response = await fetch(postURL, {
         method: 'POST',
         headers: {

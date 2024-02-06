@@ -18,7 +18,7 @@ export const ViewApp = ({ job, onEditClick, onConfirmDelete }) => {
   const handleConfirm = async () => {
     try {
       const jobId = job._id; 
-      const deleteURL = `http://localhost:3001/jobs/${jobId}`;
+      const deleteURL = `https://jobhunterapp-345c7e7b566e.herokuapp.com/jobs/${jobId}`;
       const userToken = AuthService.getToken();
       
       await fetch(deleteURL, {

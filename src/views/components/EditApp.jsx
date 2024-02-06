@@ -29,7 +29,7 @@ export const EditApp = ({ job, onSubmit, onViewClick }) => {
         jobData.interview_location = '';
       }
       const jobId = job._id;
-      const postURL = `http://localhost:3001/jobs/${jobId}`;
+      const postURL = `https://jobhunterapp-345c7e7b566e.herokuapp.com/jobs/${jobId}`;
       const userToken = AuthService.getToken();
       await fetch(postURL, {
         method: 'PUT',
