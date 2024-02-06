@@ -39,9 +39,15 @@ export const Applications = () => {
           <p className="w-1/3 text-center">Status</p>
         </div>
         <div className="jobCards flex flex-col gap-2">
-          {jobs.map((job) => (
-            <JobContainer key={job._id} job={job} />
-          ))}
+          {
+            jobs.length == 0 ? (
+              <p>Start applying to see your applications here!</p>
+            ) : (
+              jobs.map((job) => (
+                <JobContainer key={job._id} job={job} />
+              ))
+            )
+          }
         </div> 
       </div>
     </div>

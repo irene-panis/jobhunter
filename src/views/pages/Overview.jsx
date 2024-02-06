@@ -104,17 +104,29 @@ export const Overview = () => {
         <div className="interviewsSection flex flex-col gap-2 col-span-2 row-start-2 gap-2 justify-center">
           <h2 className="font-bold text-xl">Your Next Interview</h2>
           <div className="jobCards flex flex-col gap-2">
-            {interview.map((job) => (
-              <JobContainer key={job._id} job={job} />
-            ))}
+            {
+              interview.length == 0 ? (
+                <p>No interviews yet!</p>
+              ) : (
+                interview.map((job) => (
+                  <JobContainer key={job._id} job={job} />
+                ))
+              )
+            }
           </div> 
         </div>
         <div className="jobsSection flex flex-col col-span-2 row-start-3 row-end-7 gap-2">
           <h2 className="font-bold text-xl">Recent Jobs</h2>
           <div className="jobCards flex flex-col gap-4">
-            {jobs.map((job) => (
-              <JobContainer key={job._id} job={job} />
-            ))}
+            {
+              jobs.length == 0 ? (
+                <p>No jobs yet!</p>
+              ) : (
+                jobs.map((job) => (
+                  <JobContainer key={job._id} job={job} />
+                ))
+              )
+            }
           </div>
         </div>
         <div className="col-start-3 row-start-5  bg-dm-black rounded-md flex justify-center items-center shadow-md">

@@ -38,10 +38,12 @@ export const Interviews = () => {
           <p className="w-1/3 text-center">Status</p>
         </div>
         <div className="jobCards flex flex-col gap-2">
-          {jobs.map((job) => (
-            <JobContainer key={job._id} job={job} />
-          ))}
-        </div> 
+          {jobs.length == 0 ? (
+            <p>Start applying to see your interviews here!</p>
+          ) : (
+            jobs.map((job) => <JobContainer key={job._id} job={job} />)
+          )}
+        </div>
       </div>
     </div>
   );
