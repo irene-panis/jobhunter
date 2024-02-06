@@ -18,7 +18,7 @@ export const Settings = () => {
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="font-bold text-3xl">Settings</h2>
+      <h2 className="font-bold text-2xl">Settings</h2>
       <div className="settings-container flex flex-col gap-5">
         <ChangeName/>
         <ChangeEmail/>

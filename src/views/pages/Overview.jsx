@@ -113,7 +113,7 @@ export const Overview = () => {
             ))}
           </div>
         </div>
-        <div className="col-start-3 row-start-5 row-end-7 bg-dm-black rounded-md flex justify-center items-center shadow-md">
+        <div className="col-start-3 row-start-5  bg-dm-black rounded-md flex justify-center items-center shadow-md">
           <p>made with 💜 by <a href="https://github.com/irene-panis" className="underline hover:bg-white hover:text-black ease-in-out duration-300">irene panis</a>.</p>
         </div>
       </div>
