@@ -5,6 +5,8 @@
 
 Made for job hunters by a job hunter.
 
+### [Deployed site](https://jobhunterapp-345c7e7b566e.herokuapp.com/)
+
 ## Usage & Preview
 Users can get started by creating an account. Then, they are taken to their dashboard where they can record new applications (consisting of the position title, company, and location, with the option to add custom notes) and view their past application data at a glance.
 
